@@ -25,6 +25,7 @@
         <item name="android:inputType">textEmailAddress</item>
     </style>
     <style name="Input.Password">
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:inputType">textPassword</item>
     </style>
     <style name="Input.Password.Login">
