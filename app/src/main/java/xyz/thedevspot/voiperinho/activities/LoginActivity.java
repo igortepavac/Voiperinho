@@ -33,6 +33,9 @@ import xyz.thedevspot.voiperinho.mvp.views.LoginView;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends BaseActivity implements LoginView {
+
+    public static final int REGISTRATION_REQUEST = 1;
+
     // UI references.
     @Bind(R.id.username)
     EditText usernameView;
@@ -73,9 +76,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @OnClick(R.id.register_button)
     protected void onClickRegister() {
-        // TODO: Registration activity
+        startActivityForResult(new Intent(this, RegisterActivity.class), REGISTRATION_REQUEST);
     }
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -146,6 +148,16 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     public void showError(@StringRes int error) {
         showErrorMessage(getString(error));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO: login
+        /*
+        if (requestCode == REGISTRATION_REQUEST && resultCode == RESULT_OK) {
+            onLoginSuccess();
+        }
+        */
     }
 }
 

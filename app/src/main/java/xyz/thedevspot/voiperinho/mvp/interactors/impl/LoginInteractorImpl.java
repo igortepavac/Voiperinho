@@ -27,10 +27,13 @@ public class LoginInteractorImpl implements LoginInteractor {
         this.listener = listener;
         Credentials credentials = new Credentials(username, password);
 
-        Call<LoginResponse> call = ApiManager.getService().userLogin(credentials);
-        call.enqueue(callback);
+        // TODO: login with socket
+
+        //Call<LoginResponse> call = ApiManager.getService().userLogin(credentials);
+        //call.enqueue(callback);
     }
 
+    /*
     private Callback<LoginResponse> callback = new Callback<LoginResponse>() {
         @Override
         public void onResponse(Response<LoginResponse> response, Retrofit retrofit) {
@@ -44,4 +47,5 @@ public class LoginInteractorImpl implements LoginInteractor {
             listener.onLoginFail();
         }
     };
+    */
 }
