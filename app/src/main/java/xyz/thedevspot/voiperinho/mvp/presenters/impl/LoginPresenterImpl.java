@@ -1,5 +1,8 @@
 package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 
+import android.text.TextUtils;
+
+import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
 import xyz.thedevspot.voiperinho.mvp.presenters.LoginPresenter;
@@ -21,18 +24,26 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void attemptLogin(String username, String password) {
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+            loginView.showError(R.string.credentials_empty);
+        } else {
+            loginView.showProgress();
+            loginInteractor.attemptLogin(loginListener, username, password);
+        }
 
     }
 
     private LoginListener loginListener = new LoginListener() {
         @Override
-        public void onLoginSuccess(String token) {
-
+        public void onLoginSuccess() {
+            loginView.hideProgress();
+            loginView.onLoginSuccess();
         }
 
         @Override
-        public void onLoginFail(String error) {
-
+        public void onLoginFail() {
+            loginView.hideProgress();
+            loginView.onLoginFail();
         }
     };
 }

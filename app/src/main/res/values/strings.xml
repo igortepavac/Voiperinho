@@ -18,5 +18,9 @@
 
     <string name="action_register">Register</string>
 
+    <string name="credentials_empty">Please fill both fields.</string>
+    <string name="credentials_incorrect">Entered credentials are not valid.</string>
+
     <string name="please_wait">Please wait…</string>
+    <string name="something_wrong">Something went wrong!</string>
 </resources>
