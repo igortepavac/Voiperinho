@@ -54,7 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
-                    style="@style/Input.Password.Login" />
+                    style="@style/Input.Password" />
 
             </android.support.design.widget.TextInputLayout>
 
