@@ -21,6 +21,9 @@
     <style name="Input.Username">
         <item name="android:inputType">text</item>
     </style>
+    <style name="Input.Email">
+        <item name="android:inputType">textEmailAddress</item>
+    </style>
     <style name="Input.Password">
         <item name="android:inputType">textPassword</item>
     </style>

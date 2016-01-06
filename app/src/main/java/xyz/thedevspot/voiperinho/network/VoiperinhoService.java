@@ -12,5 +12,5 @@ import xyz.thedevspot.voiperinho.models.RegisterResponse;
 public interface VoiperinhoService {
 
     @POST("/user/insert")
-    Call<RegisterResponse> userLogin(@Body RegisterRequest registerRequest);
+    Call<RegisterResponse> userRegister(@Body RegisterRequest registerRequest);
 }

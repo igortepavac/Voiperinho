@@ -6,6 +6,7 @@
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_email">Email</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -18,8 +19,13 @@
 
     <string name="action_register">Register</string>
 
-    <string name="credentials_empty">Please fill both fields.</string>
+    <string name="credentials_empty">All fields are required.</string>
     <string name="credentials_incorrect">Entered credentials are not valid.</string>
+
+    <string name="registration_success_title">Registration successful!</string>
+    <string name="registration_success_message">You can sign in now.</string>
+    <string name="registration_mail_not_valid">Enter a valid mail.</string>
+    <string name="registration_password_not_valid">Password has to be at least 6 characters long.</string>
 
     <string name="please_wait">Please wait…</string>
     <string name="something_wrong">Something went wrong!</string>

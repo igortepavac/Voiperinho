@@ -5,20 +5,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.support.annotation.StringRes;
-import android.support.v7.app.AppCompatActivity;
-
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,10 +30,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     // UI references.
     @Bind(R.id.username)
-    EditText usernameView;
+    EditText username;
 
     @Bind(R.id.password)
-    EditText passwordView;
+    EditText password;
 
     @Bind(R.id.login_progress)
     View progressView;
@@ -85,7 +77,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        presenter.attemptLogin(usernameView.getText().toString(), passwordView.getText().toString());
+        presenter.attemptLogin(username.getText().toString(), password.getText().toString());
     }
 
     /**
@@ -152,7 +144,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO: login
+        super.onActivityResult(requestCode, resultCode, data);
+        // TODO: remove super and call login - no
         /*
         if (requestCode == REGISTRATION_REQUEST && resultCode == RESULT_OK) {
             onLoginSuccess();
