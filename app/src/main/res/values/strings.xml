@@ -17,4 +17,6 @@
     </string>
 
     <string name="action_register">Register</string>
+
+    <string name="please_wait">Please wait…</string>
 </resources>

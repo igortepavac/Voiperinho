@@ -3,6 +3,7 @@ package xyz.thedevspot.voiperinho.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.AsyncTask;
@@ -20,18 +21,15 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import xyz.thedevspot.voiperinho.R;
+import xyz.thedevspot.voiperinho.mvp.views.LoginView;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity {
-
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
+public class LoginActivity extends BaseActivity implements LoginView {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -80,6 +78,16 @@ public class LoginActivity extends AppCompatActivity {
     protected boolean onActionPassword() {
         attemptLogin();
         return true;
+    }
+
+    @OnClick(R.id.sign_in_button)
+    protected void onClickSingIn() {
+
+    }
+
+    @OnClick(R.id.register_button)
+    protected void onClickRegister() {
+
     }
 
 
@@ -179,6 +187,31 @@ public class LoginActivity extends AppCompatActivity {
             progressView.setVisibility(show ? View.VISIBLE : View.GONE);
             loginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onLoginSuccess() {
+
+    }
+
+    @Override
+    public void onLoginFail() {
+
+    }
+
+    @Override
+    public void showProgress() {
+        showProgress(true);
+    }
+
+    @Override
+    public void hideProgress() {
+        showProgress(false);
+    }
+
+    @Override
+    public void showError(@StringRes int error) {
+        showErrorMessage(getString(error));
     }
 
     /**

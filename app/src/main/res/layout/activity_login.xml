@@ -67,6 +67,7 @@
                 style="@style/Button.Login"/>
 
             <Button
+                android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_default"
