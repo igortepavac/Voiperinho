@@ -1,19 +1,7 @@
 package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 
-import java.io.IOException;
-
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
-import xyz.thedevspot.voiperinho.R;
-import xyz.thedevspot.voiperinho.VoiperinhoApplication;
-import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
-import xyz.thedevspot.voiperinho.models.Credentials;
-import xyz.thedevspot.voiperinho.models.LoginResponse;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
-import xyz.thedevspot.voiperinho.network.ApiManager;
 
 /**
  * Created by foi on 06/01/16.
@@ -25,7 +13,7 @@ public class LoginInteractorImpl implements LoginInteractor {
     @Override
     public void attemptLogin(LoginListener listener, String username, String password) {
         this.listener = listener;
-        Credentials credentials = new Credentials(username, password);
+        String credentials = "{ \"username\": \"" + username + "\", \"password\": \"" + password + "\" }\n";
 
         // TODO: login with socket
 

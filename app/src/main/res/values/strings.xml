@@ -29,4 +29,6 @@
 
     <string name="please_wait">Please wait…</string>
     <string name="something_wrong">Something went wrong!</string>
+
+    <string name="conversation_error">Can't open the conversation!</string>
 </resources>
