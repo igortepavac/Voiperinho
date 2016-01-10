@@ -1,5 +1,6 @@
 package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 
+import xyz.thedevspot.voiperinho.helpers.SocketHelper;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
 
@@ -8,32 +9,33 @@ import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
  */
 public class LoginInteractorImpl implements LoginInteractor {
 
-    private LoginListener listener;
+    LoginListener listener;
 
     @Override
     public void attemptLogin(LoginListener listener, String username, String password) {
         this.listener = listener;
-        String credentials = "{ \"username\": \"" + username + "\", \"password\": \"" + password + "\" }\n";
 
-        // TODO: login with socket
-
-        //Call<LoginResponse> call = ApiManager.getService().userLogin(credentials);
-        //call.enqueue(callback);
+        SocketHelper socketHelper = new SocketHelper(loginResponseListener, username, password);
+        Thread t = new Thread(socketHelper);
+        t.start();
     }
 
-    /*
-    private Callback<LoginResponse> callback = new Callback<LoginResponse>() {
+    public interface LoginResponseListener {
+
+        void onLoginSuccess(int id);
+
+        void onLoginFail();
+    }
+
+    private LoginResponseListener loginResponseListener = new LoginResponseListener() {
         @Override
-        public void onResponse(Response<LoginResponse> response, Retrofit retrofit) {
-            SharedPreferencesHelper.setId(
-                    VoiperinhoApplication.getInstance(), response.body().getMessage().getId());
+        public void onLoginSuccess(int id) {
             listener.onLoginSuccess();
         }
 
         @Override
-        public void onFailure(Throwable t) {
+        public void onLoginFail() {
             listener.onLoginFail();
         }
     };
-    */
 }
