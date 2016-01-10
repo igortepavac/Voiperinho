@@ -25,7 +25,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     @Override
     public void attemptLogin(String username, String password) {
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-            loginView.showError(R.string.credentials_empty);
+            loginView.showMessage(R.string.credentials_empty);
         } else {
             loginView.showProgress();
             loginInteractor.attemptLogin(loginListener, username, password);

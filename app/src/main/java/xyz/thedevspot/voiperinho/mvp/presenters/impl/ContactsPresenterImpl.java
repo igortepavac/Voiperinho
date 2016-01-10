@@ -1,5 +1,6 @@
 package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xyz.thedevspot.voiperinho.R;
@@ -25,8 +26,54 @@ public class ContactsPresenterImpl implements ContactsPresenter {
 
     @Override
     public void getContacts() {
-        view.showProgress();
-        interactor.getContacts(listener);
+        //view.showProgress();
+        //interactor.getContacts(listener);
+        List<User> contacts = new ArrayList<>();
+
+        User user = new User();
+        user.setUsername("Jovan");
+        contacts.add(user);
+
+        user = new User();
+        user.setUsername("Nino");
+        contacts.add(user);
+
+        user = new User();
+        user.setUsername("Nino");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Nino");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Nino");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Nino");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Nino");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Nino");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Nino");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Nino");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Nora");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Zoki");
+        contacts.add(user);
+        user = new User();
+        user.setUsername("Stevo");
+        contacts.add(user);
+
+
+        view.onContactsReceived(contacts);
     }
 
     @Override
@@ -51,7 +98,7 @@ public class ContactsPresenterImpl implements ContactsPresenter {
         @Override
         public void onError() {
             view.hideProgress();
-            view.showError(R.string.something_wrong);
+            view.showMessage(R.string.something_wrong);
         }
     };
 }

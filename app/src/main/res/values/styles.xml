@@ -7,27 +7,34 @@
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Input">
         <item name="android:maxLines">1</item>
         <item name="android:singleLine">true</item>
     </style>
+
     <style name="Input.Username">
         <item name="android:inputType">text</item>
     </style>
+
     <style name="Input.Email">
         <item name="android:inputType">textEmailAddress</item>
     </style>
+
     <style name="Input.Password">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:inputType">textPassword</item>
     </style>
+
     <style name="Input.Password.Login">
         <item name="android:imeOptions">actionGo</item>
         <item name="android:imeActionLabel">@string/action_sign_in</item>
@@ -38,9 +45,11 @@
         <item name="android:textSize">@dimen/text_size_standard</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="Button.Login">
         <item name="android:background">@drawable/login_button_bg</item>
     </style>
+
     <style name="Button.Register">
         <item name="android:textColor">@color/login_button_normal</item>
         <item name="android:background">@drawable/register_button_bg</item>

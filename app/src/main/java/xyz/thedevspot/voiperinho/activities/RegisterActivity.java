@@ -5,10 +5,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.os.Build;
-import android.support.annotation.StringRes;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 
@@ -18,7 +16,6 @@ import butterknife.OnClick;
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.helpers.MvpFactory;
 import xyz.thedevspot.voiperinho.mvp.presenters.RegisterPresenter;
-import xyz.thedevspot.voiperinho.mvp.views.BaseView;
 import xyz.thedevspot.voiperinho.mvp.views.RegisterView;
 
 public class RegisterActivity extends BaseActivity implements RegisterView {
@@ -100,7 +97,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @Override
     public void onRegisterFail() {
-        showError(R.string.something_wrong);
+        showMessage(R.string.something_wrong);
     }
 
     @Override
@@ -111,11 +108,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @Override
     public void hideProgress() {
         showProgress(false);
-    }
-
-    @Override
-    public void showError(@StringRes int error) {
-        showErrorMessage(getString(error));
     }
 
     private void showSuccessDialog() {

@@ -55,11 +55,11 @@ public class RegisterPresenterImpl implements RegisterPresenter {
         boolean ret = false;
 
         if (!isFormFilled(username, password, email)) {
-            view.showError(R.string.credentials_empty);
+            view.showMessage(R.string.credentials_empty);
         } else if (!isMailValid(email)) {
-            view.showError(R.string.registration_mail_not_valid);
+            view.showMessage(R.string.registration_mail_not_valid);
         } else if (!isPasswordValid(password)) {
-            view.showError(R.string.registration_password_not_valid);
+            view.showMessage(R.string.registration_password_not_valid);
         } else {
             ret = true;
         }

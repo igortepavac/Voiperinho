@@ -4,8 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.support.annotation.StringRes;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -124,7 +122,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void onLoginFail() {
-        showError(R.string.credentials_incorrect);
+        showMessage(R.string.credentials_incorrect);
     }
 
     @Override
@@ -135,11 +133,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     public void hideProgress() {
         showProgress(false);
-    }
-
-    @Override
-    public void showError(@StringRes int error) {
-        showErrorMessage(getString(error));
     }
 
     @Override
