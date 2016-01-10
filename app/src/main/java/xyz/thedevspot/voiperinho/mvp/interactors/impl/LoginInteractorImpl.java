@@ -1,5 +1,8 @@
 package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import xyz.thedevspot.voiperinho.helpers.SocketHelper;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
@@ -15,7 +18,10 @@ public class LoginInteractorImpl implements LoginInteractor {
     public void attemptLogin(LoginListener listener, String username, String password) {
         this.listener = listener;
 
-        SocketHelper socketHelper = new SocketHelper(loginResponseListener, username, password);
+        Handler handler = new Handler(Looper.getMainLooper());
+        //handler.post(new SocketHelper(handler, loginResponseListener, username, password));
+
+        SocketHelper socketHelper = new SocketHelper(handler, loginResponseListener, username, password);
         Thread t = new Thread(socketHelper);
         t.start();
     }
