@@ -3,37 +3,37 @@ package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 import android.os.Handler;
 import android.os.Looper;
 
+import java.net.Socket;
+
+import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.helpers.SocketHelper;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.LoginSocketListener;
+import xyz.thedevspot.voiperinho.network.RecieverSocket;
 
 /**
  * Created by foi on 06/01/16.
  */
 public class LoginInteractorImpl implements LoginInteractor {
 
-    LoginListener listener;
+    private LoginListener listener;
+
+    private Handler handler;
 
     @Override
     public void attemptLogin(LoginListener listener, String username, String password) {
         this.listener = listener;
 
-        Handler handler = new Handler(Looper.getMainLooper());
+        handler = new Handler(Looper.getMainLooper());
         //handler.post(new SocketHelper(handler, loginResponseListener, username, password));
 
-        SocketHelper socketHelper = new SocketHelper(handler, loginResponseListener, username, password);
+        SocketHelper socketHelper = new SocketHelper(handler, loginSocketListener, username, password);
         Thread t = new Thread(socketHelper);
         t.start();
     }
 
-    public interface LoginResponseListener {
-
-        void onLoginSuccess(int id);
-
-        void onLoginFail();
-    }
-
-    private LoginResponseListener loginResponseListener = new LoginResponseListener() {
+    private LoginSocketListener loginSocketListener = new LoginSocketListener() {
         @Override
         public void onLoginSuccess(int id) {
             listener.onLoginSuccess();
@@ -42,6 +42,16 @@ public class LoginInteractorImpl implements LoginInteractor {
         @Override
         public void onLoginFail() {
             listener.onLoginFail();
+        }
+
+        @Override
+        public void onConnectionSuccess(Socket client) {
+            new Thread(new RecieverSocket(client, handler, loginSocketListener, false)).start();
+        }
+
+        @Override
+        public void onConnectionFail() {
+            listener.onConnectionError(R.string.connection_error);
         }
     };
 }

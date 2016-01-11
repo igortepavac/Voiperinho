@@ -30,9 +30,11 @@
     <string name="please_wait">Please wait…</string>
     <string name="something_wrong">Something went wrong!</string>
 
+    <string name="connection_error">Connection error!</string>
+
     <string name="contacts_empty">There are no available contacts!</string>
     <string name="requests_empty">There are no contact requests!</string>
-
     <string name="conversation_error">Can\'t open the conversation!</string>
+
     <string name="title_activity_main2">Main2Activity</string>
 </resources>

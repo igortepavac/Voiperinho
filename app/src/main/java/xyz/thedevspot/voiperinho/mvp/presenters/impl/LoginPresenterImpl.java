@@ -1,5 +1,6 @@
 package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 
 import xyz.thedevspot.voiperinho.R;
@@ -13,22 +14,22 @@ import xyz.thedevspot.voiperinho.mvp.views.LoginView;
  */
 public class LoginPresenterImpl implements LoginPresenter {
 
-    private LoginView loginView;
+    private LoginView view;
 
-    private LoginInteractor loginInteractor;
+    private LoginInteractor interactor;
 
-    public LoginPresenterImpl(LoginView loginView, LoginInteractor loginInteractor) {
-        this.loginView = loginView;
-        this.loginInteractor = loginInteractor;
+    public LoginPresenterImpl(LoginView view, LoginInteractor interactor) {
+        this.view = view;
+        this.interactor = interactor;
     }
 
     @Override
     public void attemptLogin(String username, String password) {
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-            loginView.showMessage(R.string.credentials_empty);
+            view.showMessage(R.string.credentials_empty);
         } else {
-            loginView.showProgress();
-            loginInteractor.attemptLogin(loginListener, username, password);
+            view.showProgress();
+            interactor.attemptLogin(loginListener, username, password);
         }
 
     }
@@ -36,14 +37,20 @@ public class LoginPresenterImpl implements LoginPresenter {
     private LoginListener loginListener = new LoginListener() {
         @Override
         public void onLoginSuccess() {
-            loginView.hideProgress();
-            loginView.onLoginSuccess();
+            view.hideProgress();
+            view.onLoginSuccess();
         }
 
         @Override
         public void onLoginFail() {
-            loginView.hideProgress();
-            loginView.onLoginFail();
+            view.hideProgress();
+            view.onLoginFail();
+        }
+
+        @Override
+        public void onConnectionError(@StringRes int error) {
+            view.hideProgress();
+            view.showMessage(error);
         }
     };
 }
