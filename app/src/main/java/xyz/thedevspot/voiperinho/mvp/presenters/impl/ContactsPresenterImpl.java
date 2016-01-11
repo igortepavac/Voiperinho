@@ -1,9 +1,10 @@
 package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import xyz.thedevspot.voiperinho.R;
+import xyz.thedevspot.voiperinho.VoiperinhoApplication;
+import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.ContactsInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.ContactsListener;
@@ -26,64 +27,13 @@ public class ContactsPresenterImpl implements ContactsPresenter {
 
     @Override
     public void getContacts() {
-        //view.showProgress();
-        //interactor.getContacts(listener);
-
-
-        List<User> contacts = new ArrayList<>();
-
-        User user = new User();
-        user.setUsername("Jovan");
-        contacts.add(user);
-
-        user = new User();
-        user.setUsername("Nino");
-        contacts.add(user);
-
-        user = new User();
-        user.setUsername("Nino");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Nino");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Nino");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Nino");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Nino");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Nino");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Nino");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Nino");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Nora");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Zoki");
-        contacts.add(user);
-        user = new User();
-        user.setUsername("Stevo");
-        contacts.add(user);
-
-
-        view.onContactsReceived(contacts);
-
+        view.showProgress();
+        interactor.getContacts(listener);
     }
 
     @Override
     public void onContactClick(int id) {
-
-        // TODO: save id with different tagg
-
+        SharedPreferencesHelper.setContactId(VoiperinhoApplication.getInstance(), id);
     }
 
     private ContactsListener listener = new ContactsListener() {

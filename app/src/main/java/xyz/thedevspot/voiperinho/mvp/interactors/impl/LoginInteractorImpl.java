@@ -6,6 +6,8 @@ import android.os.Looper;
 import java.net.Socket;
 
 import xyz.thedevspot.voiperinho.R;
+import xyz.thedevspot.voiperinho.VoiperinhoApplication;
+import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.helpers.SocketHelper;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
@@ -33,6 +35,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
         @Override
         public void onLoginSuccess(int id) {
+            SharedPreferencesHelper.setUserId(VoiperinhoApplication.getInstance(), id);
             listener.onLoginSuccess();
         }
 

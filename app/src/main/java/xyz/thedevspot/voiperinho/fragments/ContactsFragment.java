@@ -33,6 +33,8 @@ public class ContactsFragment extends BaseFragment implements ContactsView, Adap
 
     private ContactsPresenter presenter;
 
+    private ContactsAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contacts, container, false);
@@ -52,7 +54,7 @@ public class ContactsFragment extends BaseFragment implements ContactsView, Adap
 
     @Override
     public void onContactsReceived(List<User> contactList) {
-        final ContactsAdapter adapter = new ContactsAdapter(getActivity(), contactList);
+        adapter = new ContactsAdapter(getActivity(), contactList, true);
         contactListView.setAdapter(adapter);
         contactListView.setOnItemClickListener(this);
     }
@@ -64,6 +66,7 @@ public class ContactsFragment extends BaseFragment implements ContactsView, Adap
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        presenter.onContactClick(adapter.getItem(position).getId());
         // TODO: open conversation
         showMessage(R.string.conversation_error);
     }

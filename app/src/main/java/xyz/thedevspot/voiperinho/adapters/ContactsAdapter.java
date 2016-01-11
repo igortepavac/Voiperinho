@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -19,8 +20,11 @@ import xyz.thedevspot.voiperinho.models.User;
  */
 public class ContactsAdapter extends ArrayAdapter<User> {
 
-    public ContactsAdapter(Context context, List<User> contactList) {
+    private boolean userContact;
+
+    public ContactsAdapter(Context context, List<User> contactList, boolean contact) {
         super(context, R.layout.list_item_contact, contactList);
+        this.userContact = contact;
     }
 
     @Override
@@ -38,6 +42,10 @@ public class ContactsAdapter extends ArrayAdapter<User> {
 
         holder.contactUsername.setText(contact.getUsername());
 
+        if (!userContact) {
+            holder.contactAvailable.setVisibility(View.GONE);
+        }
+
         return convertView;
     }
 
@@ -45,6 +53,9 @@ public class ContactsAdapter extends ArrayAdapter<User> {
 
         @Bind(R.id.contact_username)
         TextView contactUsername;
+
+        @Bind(R.id.contact_available)
+        ImageView contactAvailable;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

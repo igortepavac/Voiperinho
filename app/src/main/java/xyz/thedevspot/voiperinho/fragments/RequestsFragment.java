@@ -33,6 +33,8 @@ public class RequestsFragment extends BaseFragment implements RequestsView, Adap
 
     private RequestsPresenter presenter;
 
+    private ContactsAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_requests, container, false);
@@ -52,7 +54,7 @@ public class RequestsFragment extends BaseFragment implements RequestsView, Adap
 
     @Override
     public void onRequestsReceived(List<User> requestList) {
-        final ContactsAdapter adapter = new ContactsAdapter(getActivity(), requestList);
+        adapter = new ContactsAdapter(getActivity(), requestList, false);
         requestListView.setAdapter(adapter);
         requestListView.setOnItemClickListener(this);
     }

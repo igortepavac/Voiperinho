@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import xyz.thedevspot.voiperinho.R;
-import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.mvp.views.BaseView;
 
 /**
@@ -19,7 +18,7 @@ public class BaseFragment extends android.support.v4.app.Fragment implements Bas
     @Override
     public void showProgress() {
         if (progressDialog == null || !progressDialog.isShowing()) {
-            progressDialog = ProgressDialog.show(VoiperinhoApplication.getInstance(), getString(R.string.app_name), getString(R.string.please_wait), true, false);
+            progressDialog = ProgressDialog.show(getActivity(), getString(R.string.app_name), getString(R.string.please_wait), true, false);
         }
     }
 
