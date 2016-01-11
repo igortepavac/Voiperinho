@@ -3,15 +3,15 @@ package xyz.thedevspot.voiperinho.models;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by foi on 06/01/16.
+ * Created by foi on 11/01/16.
  */
-public class RegisterResponse {
+public class BaseResponse<T> {
 
     @SerializedName("status")
     private int status;
 
     @SerializedName("message")
-    private String message;
+    private T message;
 
     @SerializedName("error_message")
     private String errorMessage;
@@ -24,11 +24,11 @@ public class RegisterResponse {
         this.status = status;
     }
 
-    public String getMessage() {
+    public T getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(T message) {
         this.message = message;
     }
 

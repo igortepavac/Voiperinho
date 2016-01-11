@@ -33,8 +33,6 @@ public class ContactsFragment extends BaseFragment implements ContactsView, Adap
 
     private ContactsPresenter presenter;
 
-    private AdapterView.OnItemClickListener listener;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contacts, container, false);

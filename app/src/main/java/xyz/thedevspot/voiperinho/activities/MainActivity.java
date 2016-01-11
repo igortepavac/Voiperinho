@@ -19,6 +19,9 @@ import xyz.thedevspot.voiperinho.fragments.RequestsFragment;
 
 public class MainActivity extends BaseActivity {
 
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
     @Bind(R.id.container)
     ViewPager viewPager;
 
@@ -33,9 +36,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        initToolbar(toolbar, false);
         initFragmentList();
 
         final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentArrayList);

@@ -28,6 +28,8 @@ public class ContactsPresenterImpl implements ContactsPresenter {
     public void getContacts() {
         //view.showProgress();
         //interactor.getContacts(listener);
+
+
         List<User> contacts = new ArrayList<>();
 
         User user = new User();
@@ -74,6 +76,7 @@ public class ContactsPresenterImpl implements ContactsPresenter {
 
 
         view.onContactsReceived(contacts);
+
     }
 
     @Override

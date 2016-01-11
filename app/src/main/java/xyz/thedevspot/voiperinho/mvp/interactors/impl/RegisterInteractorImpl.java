@@ -4,8 +4,8 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
+import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.RegisterRequest;
-import xyz.thedevspot.voiperinho.models.RegisterResponse;
 import xyz.thedevspot.voiperinho.mvp.interactors.RegisterInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.RegisterListener;
 import xyz.thedevspot.voiperinho.network.ApiManager;
@@ -21,13 +21,13 @@ public class RegisterInteractorImpl implements RegisterInteractor {
     public void attemptRegistration(RegisterListener listener, RegisterRequest registerRequest) {
         this.listener = listener;
 
-        Call<RegisterResponse> call = ApiManager.getService().userRegister(registerRequest);
+        Call<BaseResponse<String>> call = ApiManager.getService().userRegister(registerRequest);
         call.enqueue(callback);
     }
 
-    private Callback<RegisterResponse> callback = new Callback<RegisterResponse>() {
+    private Callback<BaseResponse<String>> callback = new Callback<BaseResponse<String>>() {
         @Override
-        public void onResponse(Response<RegisterResponse> response, Retrofit retrofit) {
+        public void onResponse(Response<BaseResponse<String>> response, Retrofit retrofit) {
             if (response.body().getStatus() == 200) {
                 listener.onRegisterSuccess();
             } else {

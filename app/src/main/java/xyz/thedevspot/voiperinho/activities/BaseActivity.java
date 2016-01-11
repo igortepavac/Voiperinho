@@ -44,5 +44,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
 
     protected void initToolbar(Toolbar toolbar, boolean homeEnabled) {
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(homeEnabled);
+        getSupportActionBar().setDisplayShowHomeEnabled(homeEnabled);
     }
 }
