@@ -24,16 +24,13 @@ public class LoginInteractorImpl implements LoginInteractor {
     @Override
     public void attemptLogin(LoginListener listener, String username, String password) {
         this.listener = listener;
+        this.handler = new Handler(Looper.getMainLooper());
 
-        handler = new Handler(Looper.getMainLooper());
-        //handler.post(new SocketHelper(handler, loginResponseListener, username, password));
-
-        SocketHelper socketHelper = new SocketHelper(handler, loginSocketListener, username, password);
-        Thread t = new Thread(socketHelper);
-        t.start();
+        new Thread(new SocketHelper(handler, loginSocketListener, username, password)).start();
     }
 
     private LoginSocketListener loginSocketListener = new LoginSocketListener() {
+
         @Override
         public void onLoginSuccess(int id) {
             listener.onLoginSuccess();

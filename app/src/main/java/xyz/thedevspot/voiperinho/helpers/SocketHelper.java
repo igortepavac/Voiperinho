@@ -18,7 +18,9 @@ public class SocketHelper implements Runnable {
 
     private static final String HOST = "http://thedevspot.xyz";
 
-    private static final String ADDRESS = "46.101.167.213";
+    //private static final String ADDRESS = "46.101.167.213";
+
+    private static final String ADDRESS = "10.0.2.2";
 
     private static final int PORT = 9999;
 
@@ -85,7 +87,6 @@ public class SocketHelper implements Runnable {
     }
 
     public void tryAuthorize(String username, String password) {
-        boolean ret = false;
         PrintWriter writer = new PrintWriter(outputStream, true);
 
         String credentials = "{ \"username\": \"" + username + "\", \"password\": \"" + password + "\" }\n";
