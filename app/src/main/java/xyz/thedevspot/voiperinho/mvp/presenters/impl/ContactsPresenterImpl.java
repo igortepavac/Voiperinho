@@ -32,8 +32,9 @@ public class ContactsPresenterImpl implements ContactsPresenter {
     }
 
     @Override
-    public void onContactClick(int id) {
-        SharedPreferencesHelper.setContactId(VoiperinhoApplication.getInstance(), id);
+    public void onContactClick(User user) {
+        SharedPreferencesHelper.setContactId(VoiperinhoApplication.getInstance(), user.getId());
+        SharedPreferencesHelper.setContact(VoiperinhoApplication.getInstance(), user.getUsername());
     }
 
     private ContactsListener listener = new ContactsListener() {

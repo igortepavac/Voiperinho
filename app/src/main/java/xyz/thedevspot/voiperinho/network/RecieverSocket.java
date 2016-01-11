@@ -75,7 +75,7 @@ public class RecieverSocket implements Runnable {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        loginListener.onLoginSuccess(loginResponse.getMessage().getId());
+                        loginListener.onLoginSuccess(loginResponse.getMessage());
                     }
                 });
             } else {

@@ -36,8 +36,14 @@
         <activity
             android:name=".activities.SearchActivity"
             android:label="@string/search_label"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".activities.ChatActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait" >
 
         </activity>
     </application>

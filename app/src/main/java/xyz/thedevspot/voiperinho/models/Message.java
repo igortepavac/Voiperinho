@@ -1,0 +1,75 @@
+package xyz.thedevspot.voiperinho.models;
+
+import com.google.gson.annotations.SerializedName;
+
+/**
+ * Created by foi on 11/01/16.
+ */
+public class Message {
+
+    @SerializedName("timestamp")
+    private String timestamp;
+
+    @SerializedName("content")
+    private String content;
+
+    @SerializedName("receiver")
+    private String receiver;
+
+    @SerializedName("sender")
+    private String sender;
+
+    @SerializedName("command")
+    private String command;
+
+    public Message() {
+    }
+
+    public Message(String timestamp, String content, String receiver, String sender, String command) {
+        this.timestamp = timestamp;
+        this.content = content;
+        this.receiver = receiver;
+        this.sender = sender;
+        this.command = command;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
+    public void setCommand(String command) {
+        this.command = command;
+    }
+}

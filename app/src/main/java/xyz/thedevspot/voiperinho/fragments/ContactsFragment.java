@@ -1,5 +1,6 @@
 package xyz.thedevspot.voiperinho.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.thedevspot.voiperinho.R;
+import xyz.thedevspot.voiperinho.activities.ChatActivity;
 import xyz.thedevspot.voiperinho.adapters.ContactsAdapter;
 import xyz.thedevspot.voiperinho.helpers.MvpFactory;
 import xyz.thedevspot.voiperinho.models.User;
@@ -66,8 +68,7 @@ public class ContactsFragment extends BaseFragment implements ContactsView, Adap
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        presenter.onContactClick(adapter.getItem(position).getId());
-        // TODO: open conversation
-        showMessage(R.string.conversation_error);
+        presenter.onContactClick(adapter.getItem(position));
+        startActivity(new Intent(getActivity(), ChatActivity.class));
     }
 }

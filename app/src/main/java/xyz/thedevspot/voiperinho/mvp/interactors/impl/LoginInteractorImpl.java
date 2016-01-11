@@ -9,6 +9,7 @@ import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.helpers.SocketHelper;
+import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginSocketListener;
@@ -34,8 +35,9 @@ public class LoginInteractorImpl implements LoginInteractor {
     private LoginSocketListener loginSocketListener = new LoginSocketListener() {
 
         @Override
-        public void onLoginSuccess(int id) {
-            SharedPreferencesHelper.setUserId(VoiperinhoApplication.getInstance(), id);
+        public void onLoginSuccess(User user) {
+            SharedPreferencesHelper.setUserId(VoiperinhoApplication.getInstance(), user.getId());
+            SharedPreferencesHelper.setUser(VoiperinhoApplication.getInstance(), user.getUsername());
             listener.onLoginSuccess();
         }
 
