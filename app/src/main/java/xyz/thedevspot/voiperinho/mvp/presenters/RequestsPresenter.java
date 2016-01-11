@@ -7,5 +7,5 @@ public interface RequestsPresenter {
 
     void getRequests();
 
-    void onRequestClick(boolean accept);
+    void onRequestClick(int id, boolean accept);
 }

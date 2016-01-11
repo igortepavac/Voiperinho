@@ -36,6 +36,11 @@
     <string name="requests_empty">There are no contact requests!</string>
     <string name="conversation_error">Can\'t open the conversation!</string>
 
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="request_title">Friend request</string>
+    <string name="request_message">Do you want to accept the request?</string>
+
     <string name="search_label">Search contacts</string>
     <string name="search_hint">Enter username here</string>
     <string name="search_go">Go</string>

@@ -32,8 +32,9 @@ public class RequestsPresenterImpl implements RequestsPresenter {
     }
 
     @Override
-    public void onRequestClick(boolean accept) {
+    public void onRequestClick(int id, boolean accept) {
         //view.showProgress();
+        view.showMessage(R.string.accept);
         // TODO: accept/deny the request via interactor
 
     }
