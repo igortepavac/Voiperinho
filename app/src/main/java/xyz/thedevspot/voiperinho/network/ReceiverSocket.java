@@ -24,15 +24,22 @@ public class ReceiverSocket implements Runnable {
 
     private Handler handler;
 
-    private Object listener;
+    private LoginSocketListener loginListener;
+
+    //Replace with online status change listener
+    /*private static ContactsListener contactsListener;
+
+    public static void setContactsListener(ContactsListener cListener) {
+        contactsListener = cListener;
+    }*/
 
     private boolean isAuthorized;
 
-    public ReceiverSocket(Socket client, Handler handler, Object listener, boolean isAuthorized) {
+    public ReceiverSocket(Socket client, Handler handler, LoginSocketListener listener) {
         this.client = client;
         this.handler = handler;
-        this.listener = listener;
-        this.isAuthorized = isAuthorized;
+        this.loginListener = listener;
+        this.isAuthorized = false;
 
         try {
             this.reader= new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -59,8 +66,6 @@ public class ReceiverSocket implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        final LoginSocketListener loginListener = (LoginSocketListener) listener;
 
         if (!TextUtils.isEmpty(response)) {
 

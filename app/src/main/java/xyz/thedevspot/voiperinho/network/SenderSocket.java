@@ -1,8 +1,10 @@
 package xyz.thedevspot.voiperinho.network;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
+
+import xyz.thedevspot.voiperinho.models.Message;
 
 /**
  * Created by foi on 11/01/16.
@@ -11,13 +13,16 @@ public class SenderSocket implements Runnable {
 
     private Socket client;
 
-    private OutputStream outputStream;
+    private PrintWriter writer;
 
-    public SenderSocket(Socket client) {
+    private Message message;
+
+    public SenderSocket(Socket client, Message message) {
         this.client = client;
+        this.message = message;
 
         try {
-            this.outputStream = client.getOutputStream();
+            this.writer = new PrintWriter(client.getOutputStream(), true);
         } catch (IOException e) {
             e.printStackTrace();
         }

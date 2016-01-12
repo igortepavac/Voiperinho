@@ -21,10 +21,26 @@ public class ContactsInteractorImpl implements ContactsInteractor {
 
     private ContactsListener listener;
 
+
+    //Replace with online status change listener
+/*    private ContactsListener cListener = new ContactsListener() {
+        @Override
+        public void onContactsReceived(List<User> contactList) {
+
+        }
+
+        @Override
+        public void onError() {
+            listener.onError();
+        }
+    };*/
+
     @Override
     public void getContacts(ContactsListener listener) {
         this.listener = listener;
         int id = SharedPreferencesHelper.getUserId(VoiperinhoApplication.getInstance());
+
+//        ReceiverSocket.setContactsListener(cListener);
 
         Call<BaseResponse<List<User>>> call = ApiManager.getService().getContacts(id);
         call.enqueue(callback);
