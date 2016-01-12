@@ -40,7 +40,7 @@ public class ContactsInteractorImpl implements ContactsInteractor {
         this.listener = listener;
         int id = SharedPreferencesHelper.getUserId(VoiperinhoApplication.getInstance());
 
-//        ReceiverSocket.setContactsListener(cListener);
+//        ReceiverSocket.getInstance().setContactsListener(cListener);
 
         Call<BaseResponse<List<User>>> call = ApiManager.getService().getContacts(id);
         call.enqueue(callback);

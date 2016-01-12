@@ -27,15 +27,30 @@ public class ReceiverSocket implements Runnable {
     private LoginSocketListener loginListener;
 
     //Replace with online status change listener
-    /*private static ContactsListener contactsListener;
+/*
+    private ContactsListener contactsListener;
 
-    public static void setContactsListener(ContactsListener cListener) {
-        contactsListener = cListener;
-    }*/
+    public void setContactsListener(ContactsListener listener) {
+        this.contactsListener = listener;
+    }
+*/
 
     private boolean isAuthorized;
 
-    public ReceiverSocket(Socket client, Handler handler, LoginSocketListener listener) {
+    private static ReceiverSocket instance;
+
+    public static ReceiverSocket getInstance() {
+        return instance;
+    }
+
+    public static ReceiverSocket getInstance(Socket client, Handler handler, LoginSocketListener listener) {
+        if (instance == null) {
+            instance = new ReceiverSocket(client, handler, listener);
+        }
+        return instance;
+    }
+
+    private ReceiverSocket(Socket client, Handler handler, LoginSocketListener listener) {
         this.client = client;
         this.handler = handler;
         this.loginListener = listener;

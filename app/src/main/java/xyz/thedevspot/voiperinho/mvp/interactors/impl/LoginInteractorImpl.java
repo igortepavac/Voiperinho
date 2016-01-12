@@ -48,7 +48,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
         @Override
         public void onConnectionSuccess(Socket client) {
-            new Thread(new ReceiverSocket(client, handler, loginSocketListener)).start();
+            new Thread(ReceiverSocket.getInstance(client, handler, loginSocketListener)).start();
         }
 
         @Override
