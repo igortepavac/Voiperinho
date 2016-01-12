@@ -13,7 +13,7 @@ import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginSocketListener;
-import xyz.thedevspot.voiperinho.network.RecieverSocket;
+import xyz.thedevspot.voiperinho.network.ReceiverSocket;
 
 /**
  * Created by foi on 06/01/16.
@@ -48,7 +48,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
         @Override
         public void onConnectionSuccess(Socket client) {
-            new Thread(new RecieverSocket(client, handler, loginSocketListener, false)).start();
+            new Thread(new ReceiverSocket(client, handler, loginSocketListener, false)).start();
         }
 
         @Override

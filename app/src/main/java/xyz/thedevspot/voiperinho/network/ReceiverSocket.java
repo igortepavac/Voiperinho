@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
@@ -17,11 +16,11 @@ import xyz.thedevspot.voiperinho.mvp.listeners.LoginSocketListener;
 /**
  * Created by foi on 11/01/16.
  */
-public class RecieverSocket implements Runnable {
+public class ReceiverSocket implements Runnable {
 
     private Socket client;
 
-    private InputStream inputStream;
+    private BufferedReader reader;
 
     private Handler handler;
 
@@ -29,14 +28,14 @@ public class RecieverSocket implements Runnable {
 
     private boolean isAuthorized;
 
-    public RecieverSocket(Socket client, Handler handler, Object listener, boolean isAuthorized) {
+    public ReceiverSocket(Socket client, Handler handler, Object listener, boolean isAuthorized) {
         this.client = client;
         this.handler = handler;
         this.listener = listener;
         this.isAuthorized = isAuthorized;
 
         try {
-            this.inputStream = client.getInputStream();
+            this.reader= new BufferedReader(new InputStreamReader(client.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,11 +47,11 @@ public class RecieverSocket implements Runnable {
             authorize();
         }
 
+        listenForMessages();
     }
 
     private void authorize() {
         String response = "";
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
         //Wait for response
         try {
@@ -86,6 +85,20 @@ public class RecieverSocket implements Runnable {
                     }
                 });
             }
+        }
+    }
+
+    private void listenForMessages() {
+        while (isAuthorized) {
+            String response = "";
+
+            try {
+                response = reader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // TODO: parse the response and act accordingly
         }
     }
 }
