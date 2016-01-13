@@ -1,17 +1,21 @@
 package xyz.thedevspot.voiperinho.helpers;
 
+import xyz.thedevspot.voiperinho.mvp.interactors.impl.ChatInteractorImpl;
 import xyz.thedevspot.voiperinho.mvp.interactors.impl.ContactsInteractorImpl;
 import xyz.thedevspot.voiperinho.mvp.interactors.impl.LoginInteractorImpl;
 import xyz.thedevspot.voiperinho.mvp.interactors.impl.RegisterInteractorImpl;
 import xyz.thedevspot.voiperinho.mvp.interactors.impl.RequestsInteractorImpl;
+import xyz.thedevspot.voiperinho.mvp.presenters.ChatPresenter;
 import xyz.thedevspot.voiperinho.mvp.presenters.ContactsPresenter;
 import xyz.thedevspot.voiperinho.mvp.presenters.LoginPresenter;
 import xyz.thedevspot.voiperinho.mvp.presenters.RegisterPresenter;
 import xyz.thedevspot.voiperinho.mvp.presenters.RequestsPresenter;
+import xyz.thedevspot.voiperinho.mvp.presenters.impl.ChatPresenterImpl;
 import xyz.thedevspot.voiperinho.mvp.presenters.impl.ContactsPresenterImpl;
 import xyz.thedevspot.voiperinho.mvp.presenters.impl.LoginPresenterImpl;
 import xyz.thedevspot.voiperinho.mvp.presenters.impl.RegisterPresenterImpl;
 import xyz.thedevspot.voiperinho.mvp.presenters.impl.RequestsPresenterImpl;
+import xyz.thedevspot.voiperinho.mvp.views.ChatView;
 import xyz.thedevspot.voiperinho.mvp.views.ContactsView;
 import xyz.thedevspot.voiperinho.mvp.views.LoginView;
 import xyz.thedevspot.voiperinho.mvp.views.RegisterView;
@@ -36,5 +40,9 @@ public class MvpFactory {
 
     public static RequestsPresenter getPresenter(RequestsView view) {
         return new RequestsPresenterImpl(view, new RequestsInteractorImpl());
+    }
+
+    public static ChatPresenter getPresenter(ChatView view) {
+        return new ChatPresenterImpl(view, new ChatInteractorImpl());
     }
 }

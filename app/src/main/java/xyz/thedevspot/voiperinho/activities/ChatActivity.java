@@ -14,8 +14,10 @@ import butterknife.OnClick;
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.adapters.ChatAdapter;
+import xyz.thedevspot.voiperinho.helpers.MvpFactory;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.Message;
+import xyz.thedevspot.voiperinho.mvp.presenters.ChatPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.ChatView;
 
 public class ChatActivity extends BaseActivity implements ChatView {
@@ -33,6 +35,8 @@ public class ChatActivity extends BaseActivity implements ChatView {
 
     private List<Message> messageList;
 
+    private ChatPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,19 +48,24 @@ public class ChatActivity extends BaseActivity implements ChatView {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         messageList = new ArrayList<>();
+        presenter = MvpFactory.getPresenter(this);
     }
 
     @OnClick(R.id.chat_send)
     protected void onClickSend() {
-        Message message = new Message();
-        // TODO: send message via socket
+        presenter.sendMessage(chatMessage.getText().toString());
     }
 
     @Override
-    public void onMessageReceived(Message message) {
+    public void onMessageSuccess(Message message) {
         messageList.add(message);
         adapter = new ChatAdapter(this, messageList);
         chatListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onMessageFail() {
+        showMessage(R.string.something_wrong);
     }
 }

@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 import xyz.thedevspot.voiperinho.models.LoginResponse;
+import xyz.thedevspot.voiperinho.models.Message;
+import xyz.thedevspot.voiperinho.mvp.listeners.ChatListener;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginSocketListener;
 
 /**
@@ -26,29 +28,11 @@ public class ReceiverSocket implements Runnable {
 
     private LoginSocketListener loginListener;
 
-    //Replace with online status change listener
-/*
-    private ContactsListener contactsListener;
-
-    public void setContactsListener(ContactsListener listener) {
-        this.contactsListener = listener;
-    }
-*/
+    private ChatListener chatListener;
 
     private boolean isAuthorized;
 
     private static ReceiverSocket instance;
-
-    public static ReceiverSocket getInstance() {
-        return instance;
-    }
-
-    public static ReceiverSocket getInstance(Socket client, Handler handler, LoginSocketListener listener) {
-        if (instance == null) {
-            instance = new ReceiverSocket(client, handler, listener);
-        }
-        return instance;
-    }
 
     private ReceiverSocket(Socket client, Handler handler, LoginSocketListener listener) {
         this.client = client;
@@ -70,6 +54,26 @@ public class ReceiverSocket implements Runnable {
         }
 
         listenForMessages();
+    }
+
+
+    public static ReceiverSocket getInstance() {
+        return instance;
+    }
+
+    public static ReceiverSocket getInstance(Socket client, Handler handler, LoginSocketListener listener) {
+        if (instance == null) {
+            instance = new ReceiverSocket(client, handler, listener);
+        }
+        return instance;
+    }
+
+    public Socket getClient() {
+        return this.client;
+    }
+
+    public void setChatListener(ChatListener listener) {
+        this.chatListener = listener;
     }
 
     private void authorize() {
@@ -118,7 +122,14 @@ public class ReceiverSocket implements Runnable {
                 e.printStackTrace();
             }
 
-            // TODO: parse the response and act accordingly
+            if (!TextUtils.isEmpty(response)) {
+                Gson gson = new Gson();
+                Message message = gson.fromJson(response, Message.class);
+
+                if (chatListener != null) {
+                    chatListener.onMessageSuccess(message);
+                }
+            }
         }
     }
 }

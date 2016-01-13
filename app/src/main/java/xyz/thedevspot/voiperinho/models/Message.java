@@ -2,6 +2,12 @@ package xyz.thedevspot.voiperinho.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
+import xyz.thedevspot.voiperinho.helpers.MessageType;
+
 /**
  * Created by foi on 11/01/16.
  */
@@ -25,12 +31,11 @@ public class Message {
     public Message() {
     }
 
-    public Message(String timestamp, String content, String receiver, String sender, String command) {
-        this.timestamp = timestamp;
+    public Message(String content, String receiver, String sender, MessageType command) {
         this.content = content;
         this.receiver = receiver;
         this.sender = sender;
-        this.command = command;
+        this.command = command.toString();
     }
 
     public String getTimestamp() {
@@ -71,5 +76,12 @@ public class Message {
 
     public void setCommand(String command) {
         this.command = command;
+    }
+
+    public void setTimeStamp() {
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+1"));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+
+        this.timestamp = dateFormat.format(new Date());
     }
 }
