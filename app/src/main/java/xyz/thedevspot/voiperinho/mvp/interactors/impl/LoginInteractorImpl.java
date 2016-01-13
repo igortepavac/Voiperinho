@@ -22,14 +22,11 @@ public class LoginInteractorImpl implements LoginInteractor {
 
     private LoginListener listener;
 
-    private Handler handler;
-
     @Override
     public void attemptLogin(LoginListener listener, String username, String password) {
         this.listener = listener;
-        this.handler = new Handler(Looper.getMainLooper());
 
-        new Thread(new SocketHelper(handler, loginSocketListener, username, password)).start();
+        new Thread(new SocketHelper(loginSocketListener, username, password)).start();
     }
 
     private LoginSocketListener loginSocketListener = new LoginSocketListener() {
@@ -48,7 +45,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
         @Override
         public void onConnectionSuccess(Socket client) {
-            new Thread(ReceiverSocket.getInstance(client, handler, loginSocketListener)).start();
+            new Thread(ReceiverSocket.getInstance(client, loginSocketListener)).start();
         }
 
         @Override

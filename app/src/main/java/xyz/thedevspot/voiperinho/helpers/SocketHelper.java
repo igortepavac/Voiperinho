@@ -1,6 +1,7 @@
 package xyz.thedevspot.voiperinho.helpers;
 
 import android.os.Handler;
+import android.os.Looper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,11 +39,11 @@ public class SocketHelper implements Runnable {
 
     private String password;
 
-    public SocketHelper(Handler handler, LoginSocketListener listener, String username, String password) {
-        this.handler = handler;
+    public SocketHelper(LoginSocketListener listener, String username, String password) {
         this.listener = listener;
         this.username = username;
         this.password = password;
+        this.handler = new Handler(Looper.getMainLooper());
     }
 
     @Override

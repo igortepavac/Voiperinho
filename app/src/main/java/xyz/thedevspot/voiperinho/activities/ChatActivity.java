@@ -62,6 +62,8 @@ public class ChatActivity extends BaseActivity implements ChatView {
         adapter = new ChatAdapter(this, messageList);
         chatListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        chatMessage.setText("");
     }
 
     @Override

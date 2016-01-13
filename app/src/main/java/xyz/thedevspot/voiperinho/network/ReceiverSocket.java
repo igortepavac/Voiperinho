@@ -1,6 +1,7 @@
 package xyz.thedevspot.voiperinho.network;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -34,10 +35,10 @@ public class ReceiverSocket implements Runnable {
 
     private static ReceiverSocket instance;
 
-    private ReceiverSocket(Socket client, Handler handler, LoginSocketListener listener) {
+    private ReceiverSocket(Socket client, LoginSocketListener listener) {
         this.client = client;
-        this.handler = handler;
         this.loginListener = listener;
+        this.handler = new Handler(Looper.getMainLooper());
         this.isAuthorized = false;
 
         try {
@@ -61,9 +62,9 @@ public class ReceiverSocket implements Runnable {
         return instance;
     }
 
-    public static ReceiverSocket getInstance(Socket client, Handler handler, LoginSocketListener listener) {
+    public static ReceiverSocket getInstance(Socket client, LoginSocketListener listener) {
         if (instance == null) {
-            instance = new ReceiverSocket(client, handler, listener);
+            instance = new ReceiverSocket(client, listener);
         }
         return instance;
     }
@@ -113,9 +114,8 @@ public class ReceiverSocket implements Runnable {
     }
 
     private void listenForMessages() {
+        String response = "";
         while (isAuthorized) {
-            String response = "";
-
             try {
                 response = reader.readLine();
             } catch (IOException e) {
@@ -124,10 +124,15 @@ public class ReceiverSocket implements Runnable {
 
             if (!TextUtils.isEmpty(response)) {
                 Gson gson = new Gson();
-                Message message = gson.fromJson(response, Message.class);
+                final Message message = gson.fromJson(response, Message.class);
 
                 if (chatListener != null) {
-                    chatListener.onMessageSuccess(message);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            chatListener.onMessageSuccess(message);
+                        }
+                    });
                 }
             }
         }

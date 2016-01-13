@@ -11,26 +11,9 @@ import xyz.thedevspot.voiperinho.network.SenderSocket;
  */
 public class ChatInteractorImpl implements ChatInteractor {
 
-    private ChatListener listener;
-
     @Override
     public void sendMessage(ChatListener listener, Message message) {
-        this.listener = listener;
-
-        ReceiverSocket.getInstance().setChatListener(chatSocketListener);
-
-        new Thread(new SenderSocket(ReceiverSocket.getInstance().getClient(), message, chatSocketListener)).start();
+        ReceiverSocket.getInstance().setChatListener(listener);
+        new Thread(new SenderSocket(ReceiverSocket.getInstance().getClient(), message)).start();
     }
-
-    private ChatListener chatSocketListener = new ChatListener() {
-        @Override
-        public void onMessageSuccess(Message message) {
-            listener.onMessageSuccess(message);
-        }
-
-        @Override
-        public void onMessageFail() {
-            listener.onMessageFail();
-        }
-    };
 }

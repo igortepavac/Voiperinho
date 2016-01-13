@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import xyz.thedevspot.voiperinho.models.Message;
-import xyz.thedevspot.voiperinho.mvp.listeners.ChatListener;
 
 /**
  * Created by foi on 11/01/16.
@@ -20,12 +19,9 @@ public class SenderSocket implements Runnable {
 
     private Message message;
 
-    private Object listener;
-
-    public SenderSocket(Socket client, Message message, Object listener) {
+    public SenderSocket(Socket client, Message message) {
         this.client = client;
         this.message = message;
-        this.listener = listener;
 
         try {
             this.writer = new PrintWriter(client.getOutputStream(), true);
@@ -39,8 +35,5 @@ public class SenderSocket implements Runnable {
         Gson gson = new Gson();
         String json = gson.toJson(message);
         writer.println(json);
-
-        ChatListener chatListener = (ChatListener) listener;
-        chatListener.onMessageSuccess(message);
     }
 }

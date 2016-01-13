@@ -6,4 +6,7 @@ Project for Computer Networks 2 course
 - Implement Dependency Injection with Dagger2
 - Add avatar browsing feature for registration
 - Add circle avatars
+- Refactor listeners
+- Refactor models
+- Modify chat UI/UX
 - ...
