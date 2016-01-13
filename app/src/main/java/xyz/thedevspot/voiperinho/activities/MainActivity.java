@@ -17,6 +17,10 @@ import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.adapters.ViewPagerAdapter;
 import xyz.thedevspot.voiperinho.fragments.ContactsFragment;
 import xyz.thedevspot.voiperinho.fragments.RequestsFragment;
+import xyz.thedevspot.voiperinho.helpers.MessageType;
+import xyz.thedevspot.voiperinho.models.Message;
+import xyz.thedevspot.voiperinho.network.ReceiverSocket;
+import xyz.thedevspot.voiperinho.network.SenderSocket;
 
 public class MainActivity extends BaseActivity {
 
@@ -62,6 +66,15 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        Message message = new Message();
+        message.setCommand(MessageType.DISCONNECT);
+        new Thread(new SenderSocket(ReceiverSocket.getInstance().getClient(), message)).start();
+
+        super.onDestroy();
     }
 
     private void initFragmentList() {

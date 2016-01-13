@@ -1,11 +1,14 @@
 package xyz.thedevspot.voiperinho.network;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import xyz.thedevspot.voiperinho.helpers.MessageType;
 import xyz.thedevspot.voiperinho.models.Message;
 
 /**
@@ -35,5 +38,13 @@ public class SenderSocket implements Runnable {
         Gson gson = new Gson();
         String json = gson.toJson(message);
         writer.println(json);
+
+        if (TextUtils.equals(message.getCommand(), MessageType.DISCONNECT.toString())) {
+            try {
+                ReceiverSocket.getInstance().getClient().close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

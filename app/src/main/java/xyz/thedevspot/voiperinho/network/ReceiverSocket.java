@@ -57,7 +57,6 @@ public class ReceiverSocket implements Runnable {
         listenForMessages();
     }
 
-
     public static ReceiverSocket getInstance() {
         return instance;
     }
@@ -115,7 +114,7 @@ public class ReceiverSocket implements Runnable {
 
     private void listenForMessages() {
         String response = "";
-        while (isAuthorized) {
+        while (!client.isClosed() && isAuthorized) {
             try {
                 response = reader.readLine();
             } catch (IOException e) {
