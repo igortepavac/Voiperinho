@@ -30,8 +30,7 @@ public class SearchActivity extends BaseActivity {
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        initToolbar(null, null, true);
     }
 
     @OnClick(R.id.search_go)

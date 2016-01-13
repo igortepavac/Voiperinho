@@ -43,9 +43,7 @@ public class ChatActivity extends BaseActivity implements ChatView {
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
 
-        getSupportActionBar().setTitle(SharedPreferencesHelper.getContact(VoiperinhoApplication.getInstance()));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        initToolbar(null, SharedPreferencesHelper.getContact(VoiperinhoApplication.getInstance()), true);
 
         messageList = new ArrayList<>();
         presenter = MvpFactory.getPresenter(this);

@@ -1,6 +1,7 @@
 package xyz.thedevspot.voiperinho.activities;
 
 import android.app.ProgressDialog;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -42,9 +43,16 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         snackbar.show();
     }
 
-    protected void initToolbar(Toolbar toolbar, boolean homeEnabled) {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(homeEnabled);
-        getSupportActionBar().setDisplayShowHomeEnabled(homeEnabled);
+    protected void initToolbar(@Nullable Toolbar toolbar, @Nullable String title, boolean homeEnabled) {
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(homeEnabled);
+
+            if (title != null) {
+                getSupportActionBar().setTitle(title);
+            }
+        }
     }
 }
