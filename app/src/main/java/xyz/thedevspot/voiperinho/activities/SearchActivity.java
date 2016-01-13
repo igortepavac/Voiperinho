@@ -1,6 +1,7 @@
 package xyz.thedevspot.voiperinho.activities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -31,6 +32,15 @@ public class SearchActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         initToolbar(null, null, true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @OnClick(R.id.search_go)
