@@ -1,5 +1,11 @@
 package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.helpers.MessageType;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
@@ -31,6 +37,18 @@ public class ChatPresenterImpl implements ChatPresenter {
                 MessageType.MESSAGE);
 
         interactor.sendMessage(listener, message);
+    }
+
+    @Override
+    public String serializeMessageList(List<Message> messageList) {
+        Gson gson = new Gson();
+        return gson.toJson(messageList);
+    }
+
+    @Override
+    public List<Message> deserializeMessageList(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, new TypeToken<ArrayList<Message>>(){}.getType());
     }
 
     private ChatListener listener = new ChatListener() {

@@ -1,4 +1,4 @@
-package xyz.thedevspot.voiperinho.network;
+package xyz.thedevspot.voiperinho.network.socket;
 
 import android.os.Handler;
 import android.os.Looper;

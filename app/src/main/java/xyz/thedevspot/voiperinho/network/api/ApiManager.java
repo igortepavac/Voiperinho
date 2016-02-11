@@ -1,4 +1,4 @@
-package xyz.thedevspot.voiperinho.network;
+package xyz.thedevspot.voiperinho.network.api;
 
 import com.squareup.okhttp.OkHttpClient;
 

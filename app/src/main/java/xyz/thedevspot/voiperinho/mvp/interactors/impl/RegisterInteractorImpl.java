@@ -8,7 +8,7 @@ import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.RegisterRequest;
 import xyz.thedevspot.voiperinho.mvp.interactors.RegisterInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.RegisterListener;
-import xyz.thedevspot.voiperinho.network.ApiManager;
+import xyz.thedevspot.voiperinho.network.api.ApiManager;
 
 /**
  * Created by foi on 06/01/16.

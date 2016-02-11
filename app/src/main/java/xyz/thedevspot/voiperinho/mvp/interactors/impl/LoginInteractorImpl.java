@@ -1,10 +1,6 @@
 package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import java.net.Socket;
-
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
@@ -13,7 +9,7 @@ import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginSocketListener;
-import xyz.thedevspot.voiperinho.network.ReceiverSocket;
+import xyz.thedevspot.voiperinho.network.socket.ReceiverSocket;
 
 /**
  * Created by foi on 06/01/16.

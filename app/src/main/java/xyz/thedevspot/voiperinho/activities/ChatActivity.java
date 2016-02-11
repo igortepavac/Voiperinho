@@ -23,6 +23,8 @@ import xyz.thedevspot.voiperinho.mvp.views.ChatView;
 
 public class ChatActivity extends BaseActivity implements ChatView {
 
+    private static String MESSAGE_LIST = "message_list";
+
     @Bind(R.id.chat_send)
     Button sendButton;
 
@@ -46,8 +48,21 @@ public class ChatActivity extends BaseActivity implements ChatView {
 
         initToolbar(null, SharedPreferencesHelper.getContact(VoiperinhoApplication.getInstance()), true);
 
-        messageList = new ArrayList<>();
         presenter = MvpFactory.getPresenter(this);
+
+        if (savedInstanceState != null) {
+            String json = savedInstanceState.getString(MESSAGE_LIST);
+            messageList = presenter.deserializeMessageList(json);
+            refreshMessageView();
+        } else {
+            messageList = new ArrayList<>();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(MESSAGE_LIST, presenter.serializeMessageList(messageList));
     }
 
     @Override
@@ -67,15 +82,18 @@ public class ChatActivity extends BaseActivity implements ChatView {
     @Override
     public void onMessageSuccess(Message message) {
         messageList.add(message);
-        adapter = new ChatAdapter(this, messageList);
-        chatListView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
+        refreshMessageView();
         chatMessage.setText("");
     }
 
     @Override
     public void onMessageFail() {
         showMessage(R.string.something_wrong);
+    }
+
+    private void refreshMessageView() {
+        adapter = new ChatAdapter(this, messageList);
+        chatListView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }

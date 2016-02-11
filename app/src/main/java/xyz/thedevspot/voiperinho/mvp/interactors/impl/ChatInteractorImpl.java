@@ -3,8 +3,8 @@ package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 import xyz.thedevspot.voiperinho.models.Message;
 import xyz.thedevspot.voiperinho.mvp.interactors.ChatInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.ChatListener;
-import xyz.thedevspot.voiperinho.network.ReceiverSocket;
-import xyz.thedevspot.voiperinho.network.SenderSocket;
+import xyz.thedevspot.voiperinho.network.socket.ReceiverSocket;
+import xyz.thedevspot.voiperinho.network.socket.SenderSocket;
 
 /**
  * Created by foi on 13/01/16.

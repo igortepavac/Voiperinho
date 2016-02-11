@@ -12,7 +12,7 @@ import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.RequestInformation;
 import xyz.thedevspot.voiperinho.mvp.interactors.RequestsInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.RequestsListener;
-import xyz.thedevspot.voiperinho.network.ApiManager;
+import xyz.thedevspot.voiperinho.network.api.ApiManager;
 
 /**
  * Created by foi on 10/01/16.
