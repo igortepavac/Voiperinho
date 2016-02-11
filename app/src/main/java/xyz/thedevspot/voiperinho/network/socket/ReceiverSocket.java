@@ -5,14 +5,16 @@ import android.os.Looper;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-import xyz.thedevspot.voiperinho.models.LoginResponse;
+import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.Message;
+import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginCallback;
 
@@ -89,7 +91,7 @@ public class ReceiverSocket implements Runnable {
 
             //Convert response to JSON
             Gson gson = new Gson();
-            final LoginResponse loginResponse = gson.fromJson(response, LoginResponse.class);
+            final BaseResponse<User> loginResponse = gson.fromJson(response, new TypeToken<BaseResponse<User>>(){}.getType());
 
             if (loginResponse.getStatus() == 200) {
                 isAuthorized = true;
