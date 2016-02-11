@@ -3,51 +3,47 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Voiperinho</string>
 
-    <!-- Strings related to login -->
+    <!-- Login and Registration -->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_email">Email</string>
     <string name="action_login">Sign in</string>
     <string name="action_login_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-
     <string name="action_register">Register</string>
 
+    <!-- General messages -->
+    <string name="please_wait">Please wait…</string>
+    <string name="something_wrong">Something went wrong!</string>
+    <string name="connection_error">Connection error!</string>
+
+    <!-- Login messages -->
     <string name="credentials_empty">All fields are required.</string>
     <string name="credentials_incorrect">Entered credentials are not valid.</string>
 
+    <!-- Registration messages -->
     <string name="registration_success_title">Registration successful!</string>
     <string name="registration_success_message">You can sign in now.</string>
     <string name="registration_mail_not_valid">Enter a valid mail.</string>
     <string name="registration_password_not_valid">Password has to be at least 6 characters long.</string>
 
-    <string name="please_wait">Please wait…</string>
-    <string name="something_wrong">Something went wrong!</string>
-
-    <string name="connection_error">Connection error!</string>
-
+    <!-- Contacts -->
     <string name="contacts_empty">There are no available contacts!</string>
     <string name="requests_empty">There are no contact requests!</string>
     <string name="conversation_error">Can\'t open the conversation!</string>
 
+    <!-- Friend requests -->
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
     <string name="request_title">Friend request</string>
     <string name="request_message">Do you want to accept the request?</string>
 
+    <!-- Chat -->
     <string name="chat_send">Send</string>
     <string name="chat_hint">Enter message here</string>
 
+    <!-- Friend search -->
     <string name="search_label">Search contacts</string>
     <string name="search_hint">Enter username here</string>
     <string name="search_go">Go</string>
     <string name="search_empty">Enter a username and press GO!</string>
-
-    <string name="title_activity_main2">Main2Activity</string>
 </resources>
