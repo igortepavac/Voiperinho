@@ -37,8 +37,7 @@ public class ChatAdapter extends ArrayAdapter<Message> {
         Message message = getItem(position);
 
         holder.messageUsername.setText(message.getSender());
-        String time = message.getTimestamp() + ":";
-        holder.messageTimestamp.setText(time);
+        holder.messageTimestamp.setText(message.getTimestamp());
         holder.messageContent.setText(message.getContent());
 
         return convertView;

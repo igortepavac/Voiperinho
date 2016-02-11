@@ -29,8 +29,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Bind(R.id.login_form)
     View loginFormView;
 
-    @Bind(R.id.sign_in_button)
-    Button signInButton;
+    @Bind(R.id.login_button)
+    Button loginButton;
 
     private LoginPresenter presenter;
 
@@ -49,8 +49,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         return true;
     }
 
-    @OnClick(R.id.sign_in_button)
-    protected void onClickSingIn() {
+    @OnClick(R.id.login_button)
+    protected void onClickLogin() {
         attemptLogin();
     }
 
