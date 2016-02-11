@@ -7,7 +7,7 @@ import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.models.RequestInformation;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.RequestsInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.RequestsListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.presenters.RequestsPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.RequestsView;
 
@@ -39,9 +39,9 @@ public class RequestsPresenterImpl implements RequestsPresenter {
 
     }
 
-    private RequestsListener listener = new RequestsListener() {
+    private Listener<List<RequestInformation>> listener = new Listener<List<RequestInformation>>() {
         @Override
-        public void onRequestsReceived(List<RequestInformation> requestList) {
+        public void onSuccess(List<RequestInformation> requestList) {
             view.hideProgress();
 
             if (requestList != null && requestList.size() > 0) {
@@ -58,7 +58,7 @@ public class RequestsPresenterImpl implements RequestsPresenter {
         }
 
         @Override
-        public void onError() {
+        public void onFailure() {
             view.hideProgress();
             view.showMessage(R.string.something_wrong);
         }

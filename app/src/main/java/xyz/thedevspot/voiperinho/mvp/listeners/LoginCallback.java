@@ -7,7 +7,7 @@ import xyz.thedevspot.voiperinho.models.User;
 /**
  * Created by foi on 11/01/16.
  */
-public interface LoginSocketListener {
+public interface LoginCallback {
 
     void onLoginSuccess(User user);
 

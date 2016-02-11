@@ -11,7 +11,7 @@ import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.ContactsInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.ContactsListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
 import xyz.thedevspot.voiperinho.network.api.ApiManager;
 
 /**
@@ -19,24 +19,11 @@ import xyz.thedevspot.voiperinho.network.api.ApiManager;
  */
 public class ContactsInteractorImpl implements ContactsInteractor {
 
-    private ContactsListener listener;
+    private Listener<List<User>> listener;
 
-
-    //Replace with online status change listener
-/*    private ContactsListener cListener = new ContactsListener() {
-        @Override
-        public void onContactsReceived(List<User> contactList) {
-
-        }
-
-        @Override
-        public void onError() {
-            listener.onError();
-        }
-    };*/
 
     @Override
-    public void getContacts(ContactsListener listener) {
+    public void getContacts(Listener<List<User>> listener) {
         this.listener = listener;
         int id = SharedPreferencesHelper.getUserId(VoiperinhoApplication.getInstance());
 
@@ -49,12 +36,12 @@ public class ContactsInteractorImpl implements ContactsInteractor {
     private Callback<BaseResponse<List<User>>> callback = new Callback<BaseResponse<List<User>>>() {
         @Override
         public void onResponse(Response<BaseResponse<List<User>>> response, Retrofit retrofit) {
-            listener.onContactsReceived(response.body().getMessage());
+            listener.onSuccess(response.body().getMessage());
         }
 
         @Override
         public void onFailure(Throwable t) {
-            listener.onError();
+            listener.onFailure();
         }
     };
 }

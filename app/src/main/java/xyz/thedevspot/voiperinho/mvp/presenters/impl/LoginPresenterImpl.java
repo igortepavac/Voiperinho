@@ -36,13 +36,13 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     private LoginListener loginListener = new LoginListener() {
         @Override
-        public void onLoginSuccess() {
+        public void onSuccess(Void v) {
             view.hideProgress();
             view.onLoginSuccess();
         }
 
         @Override
-        public void onLoginFail() {
+        public void onFailure() {
             view.hideProgress();
             view.onLoginFail();
         }

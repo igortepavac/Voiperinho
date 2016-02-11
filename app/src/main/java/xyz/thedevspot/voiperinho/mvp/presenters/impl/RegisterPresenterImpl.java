@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.models.RegisterRequest;
 import xyz.thedevspot.voiperinho.mvp.interactors.RegisterInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.RegisterListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.presenters.RegisterPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.RegisterView;
 
@@ -37,15 +37,15 @@ public class RegisterPresenterImpl implements RegisterPresenter {
         }
     }
 
-    private RegisterListener listener = new RegisterListener() {
+    private Listener<Void> listener = new Listener<Void>() {
         @Override
-        public void onRegisterSuccess() {
+        public void onSuccess(Void v) {
             view.hideProgress();
             view.onRegisterSuccess();
         }
 
         @Override
-        public void onRegisterFail() {
+        public void onFailure() {
             view.hideProgress();
             view.onRegisterFail();
         }

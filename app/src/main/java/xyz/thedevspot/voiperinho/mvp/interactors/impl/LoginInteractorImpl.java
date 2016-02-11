@@ -8,7 +8,7 @@ import xyz.thedevspot.voiperinho.helpers.SocketHelper;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
-import xyz.thedevspot.voiperinho.mvp.listeners.LoginSocketListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.LoginCallback;
 import xyz.thedevspot.voiperinho.network.socket.ReceiverSocket;
 
 /**
@@ -22,26 +22,26 @@ public class LoginInteractorImpl implements LoginInteractor {
     public void attemptLogin(LoginListener listener, String username, String password) {
         this.listener = listener;
 
-        new Thread(new SocketHelper(loginSocketListener, username, password)).start();
+        new Thread(new SocketHelper(loginCallback, username, password)).start();
     }
 
-    private LoginSocketListener loginSocketListener = new LoginSocketListener() {
+    private LoginCallback loginCallback = new LoginCallback() {
 
         @Override
         public void onLoginSuccess(User user) {
             SharedPreferencesHelper.setUserId(VoiperinhoApplication.getInstance(), user.getId());
             SharedPreferencesHelper.setUser(VoiperinhoApplication.getInstance(), user.getUsername());
-            listener.onLoginSuccess();
+            listener.onSuccess(null);
         }
 
         @Override
         public void onLoginFail() {
-            listener.onLoginFail();
+            listener.onFailure();
         }
 
         @Override
         public void onConnectionSuccess(Socket client) {
-            new Thread(ReceiverSocket.getInstance(client, loginSocketListener)).start();
+            new Thread(ReceiverSocket.getInstance(client, loginCallback)).start();
         }
 
         @Override

@@ -11,7 +11,7 @@ import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.RequestInformation;
 import xyz.thedevspot.voiperinho.mvp.interactors.RequestsInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.RequestsListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
 import xyz.thedevspot.voiperinho.network.api.ApiManager;
 
 /**
@@ -19,10 +19,10 @@ import xyz.thedevspot.voiperinho.network.api.ApiManager;
  */
 public class RequestsInteractorImpl implements RequestsInteractor {
 
-    private RequestsListener listener;
+    private Listener<List<RequestInformation>> listener;
 
     @Override
-    public void getRequests(RequestsListener listener) {
+    public void getRequests(Listener<List<RequestInformation>> listener) {
         this.listener = listener;
         int id = SharedPreferencesHelper.getUserId(VoiperinhoApplication.getInstance());
 
@@ -40,15 +40,15 @@ public class RequestsInteractorImpl implements RequestsInteractor {
         @Override
         public void onResponse(Response<BaseResponse<List<RequestInformation>>> response, Retrofit retrofit) {
             if (response.body().getStatus() == 200) {
-                listener.onRequestsReceived(response.body().getMessage());
+                listener.onSuccess(response.body().getMessage());
             } else {
-                listener.onError();
+                listener.onFailure();
             }
         }
 
         @Override
         public void onFailure(Throwable t) {
-            listener.onError();
+            listener.onFailure();
         }
     };
 }

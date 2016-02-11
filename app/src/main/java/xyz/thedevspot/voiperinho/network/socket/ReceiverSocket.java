@@ -13,8 +13,8 @@ import java.net.Socket;
 
 import xyz.thedevspot.voiperinho.models.LoginResponse;
 import xyz.thedevspot.voiperinho.models.Message;
-import xyz.thedevspot.voiperinho.mvp.listeners.ChatListener;
-import xyz.thedevspot.voiperinho.mvp.listeners.LoginSocketListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
+import xyz.thedevspot.voiperinho.mvp.listeners.LoginCallback;
 
 /**
  * Created by foi on 11/01/16.
@@ -27,17 +27,17 @@ public class ReceiverSocket implements Runnable {
 
     private Handler handler;
 
-    private LoginSocketListener loginListener;
+    private LoginCallback callback;
 
-    private ChatListener chatListener;
+    private Listener<Message> chatListener;
 
     private boolean isAuthorized;
 
     private static ReceiverSocket instance;
 
-    private ReceiverSocket(Socket client, LoginSocketListener listener) {
+    private ReceiverSocket(Socket client, LoginCallback callback) {
         this.client = client;
-        this.loginListener = listener;
+        this.callback = callback;
         this.handler = new Handler(Looper.getMainLooper());
         this.isAuthorized = false;
 
@@ -53,7 +53,6 @@ public class ReceiverSocket implements Runnable {
         if (!isAuthorized) {
             authorize();
         }
-
         listenForMessages();
     }
 
@@ -61,7 +60,7 @@ public class ReceiverSocket implements Runnable {
         return instance;
     }
 
-    public static ReceiverSocket getInstance(Socket client, LoginSocketListener listener) {
+    public static ReceiverSocket getInstance(Socket client, LoginCallback listener) {
         if (instance == null) {
             instance = new ReceiverSocket(client, listener);
         }
@@ -72,7 +71,7 @@ public class ReceiverSocket implements Runnable {
         return this.client;
     }
 
-    public void setChatListener(ChatListener listener) {
+    public void setChatListener(Listener<Message> listener) {
         this.chatListener = listener;
     }
 
@@ -98,14 +97,14 @@ public class ReceiverSocket implements Runnable {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        loginListener.onLoginSuccess(loginResponse.getMessage());
+                        callback.onLoginSuccess(loginResponse.getMessage());
                     }
                 });
             } else {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        loginListener.onLoginFail();
+                        callback.onLoginFail();
                     }
                 });
             }
@@ -129,7 +128,7 @@ public class ReceiverSocket implements Runnable {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            chatListener.onMessageSuccess(message);
+                            chatListener.onSuccess(message);
                         }
                     });
                 }

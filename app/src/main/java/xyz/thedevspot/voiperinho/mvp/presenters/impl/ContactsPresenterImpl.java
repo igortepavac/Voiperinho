@@ -7,7 +7,7 @@ import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.ContactsInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.ContactsListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.presenters.ContactsPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.ContactsView;
 
@@ -37,9 +37,9 @@ public class ContactsPresenterImpl implements ContactsPresenter {
         SharedPreferencesHelper.setContact(VoiperinhoApplication.getInstance(), user.getUsername());
     }
 
-    private ContactsListener listener = new ContactsListener() {
+    private Listener<List<User>> listener = new Listener<List<User>>() {
         @Override
-        public void onContactsReceived(List<User> contactList) {
+        public void onSuccess(List<User> contactList) {
             view.hideProgress();
 
             if (contactList != null && contactList.size() > 0) {
@@ -50,7 +50,7 @@ public class ContactsPresenterImpl implements ContactsPresenter {
         }
 
         @Override
-        public void onError() {
+        public void onFailure() {
             view.hideProgress();
             view.showMessage(R.string.something_wrong);
         }

@@ -4,20 +4,23 @@ import android.os.Handler;
 import android.os.Looper;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import xyz.thedevspot.voiperinho.mvp.listeners.LoginSocketListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.LoginCallback;
 
 /**
  * Created by foi on 09/01/16.
  */
 public class SocketHelper implements Runnable {
 
-    private static final String HOST = "http://thedevspot.xyz";
+    private static final String ATTR_USERNAME = "{ \"username\": \"";
+
+    private static final String ATTR_PASSWORD = "\", \"password\": \"";
+
+    private static final String ATTR_ENDLINE = "\" }\n";
 
     //private static final String ADDRESS = "46.101.167.213";
 
@@ -25,22 +28,20 @@ public class SocketHelper implements Runnable {
 
     private static final int PORT = 9999;
 
-    private InputStream inputStream;
-
     private OutputStream outputStream;
 
     private Socket socket;
 
     private Handler handler;
 
-    private LoginSocketListener listener;
+    private LoginCallback listener;
 
     private String username;
 
     private String password;
 
-    public SocketHelper(LoginSocketListener listener, String username, String password) {
-        this.listener = listener;
+    public SocketHelper(LoginCallback callback, String username, String password) {
+        this.listener = callback;
         this.username = username;
         this.password = password;
         this.handler = new Handler(Looper.getMainLooper());
@@ -62,7 +63,7 @@ public class SocketHelper implements Runnable {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    listener.onLoginFail();
+                    listener.onConnectionFail();
                 }
             });
         }
@@ -74,7 +75,6 @@ public class SocketHelper implements Runnable {
         try {
             socket = new Socket(ADDRESS, PORT);
 
-            inputStream = socket.getInputStream();
             outputStream = socket.getOutputStream();
 
             ret = true;
@@ -90,7 +90,7 @@ public class SocketHelper implements Runnable {
     public void tryAuthorize(String username, String password) {
         PrintWriter writer = new PrintWriter(outputStream, true);
 
-        String credentials = "{ \"username\": \"" + username + "\", \"password\": \"" + password + "\" }\n";
+        String credentials = ATTR_USERNAME + username + ATTR_PASSWORD + password + ATTR_ENDLINE;
         writer.println(credentials);
     }
 }

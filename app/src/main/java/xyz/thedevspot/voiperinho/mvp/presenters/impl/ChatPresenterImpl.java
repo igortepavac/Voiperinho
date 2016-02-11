@@ -11,7 +11,7 @@ import xyz.thedevspot.voiperinho.helpers.MessageType;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.Message;
 import xyz.thedevspot.voiperinho.mvp.interactors.ChatInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.ChatListener;
+import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.presenters.ChatPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.ChatView;
 
@@ -51,14 +51,14 @@ public class ChatPresenterImpl implements ChatPresenter {
         return gson.fromJson(json, new TypeToken<ArrayList<Message>>(){}.getType());
     }
 
-    private ChatListener listener = new ChatListener() {
+    private Listener<Message> listener = new Listener<Message>() {
         @Override
-        public void onMessageSuccess(Message message) {
+        public void onSuccess(Message message) {
             view.onMessageSuccess(message);
         }
 
         @Override
-        public void onMessageFail() {
+        public void onFailure() {
             view.onMessageFail();
         }
     };
