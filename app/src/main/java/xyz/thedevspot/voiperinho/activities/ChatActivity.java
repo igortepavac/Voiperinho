@@ -1,6 +1,7 @@
 package xyz.thedevspot.voiperinho.activities;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,9 @@ public class ChatActivity extends BaseActivity implements ChatView {
 
     private static String MESSAGE_LIST = "message_list";
 
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
     @Bind(R.id.chat_send)
     Button sendButton;
 
@@ -45,7 +49,7 @@ public class ChatActivity extends BaseActivity implements ChatView {
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
 
-        initToolbar(null, SharedPreferencesHelper.getString(SharedPreferencesHelper.CONTACT), true);
+        initToolbar(toolbar, SharedPreferencesHelper.getString(SharedPreferencesHelper.CONTACT), true);
 
         presenter = MvpFactory.getPresenter(this);
 

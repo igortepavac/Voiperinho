@@ -1,6 +1,7 @@
 package xyz.thedevspot.voiperinho.activities;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,9 @@ import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.adapters.ContactsAdapter;
 
 public class SearchActivity extends BaseActivity {
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     @Bind(R.id.search_list)
     ListView searchListView;
@@ -31,7 +35,7 @@ public class SearchActivity extends BaseActivity {
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
 
-        initToolbar(null, null, true);
+        initToolbar(toolbar, null, true);
     }
 
     @Override
