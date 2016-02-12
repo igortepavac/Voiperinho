@@ -6,7 +6,6 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
-import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.User;
@@ -25,7 +24,7 @@ public class ContactsInteractorImpl implements ContactsInteractor {
     @Override
     public void getContacts(Listener<List<User>> listener) {
         this.listener = listener;
-        int id = SharedPreferencesHelper.getUserId(VoiperinhoApplication.getInstance());
+        int id = SharedPreferencesHelper.getInt(SharedPreferencesHelper.USER_ID);
 
 //        ReceiverSocket.getInstance().setContactsListener(cListener);
 

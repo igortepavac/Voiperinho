@@ -13,7 +13,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xyz.thedevspot.voiperinho.R;
-import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.adapters.ChatAdapter;
 import xyz.thedevspot.voiperinho.helpers.MvpFactory;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
@@ -46,7 +45,7 @@ public class ChatActivity extends BaseActivity implements ChatView {
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
 
-        initToolbar(null, SharedPreferencesHelper.getContact(VoiperinhoApplication.getInstance()), true);
+        initToolbar(null, SharedPreferencesHelper.getString(SharedPreferencesHelper.CONTACT), true);
 
         presenter = MvpFactory.getPresenter(this);
 

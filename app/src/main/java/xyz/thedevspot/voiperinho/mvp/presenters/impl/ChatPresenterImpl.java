@@ -6,7 +6,6 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.helpers.MessageType;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.Message;
@@ -32,8 +31,8 @@ public class ChatPresenterImpl implements ChatPresenter {
     @Override
     public void sendMessage(String content) {
         Message message = new Message(content,
-                SharedPreferencesHelper.getContact(VoiperinhoApplication.getInstance()),
-                SharedPreferencesHelper.getUser(VoiperinhoApplication.getInstance()),
+                SharedPreferencesHelper.getString(SharedPreferencesHelper.CONTACT),
+                SharedPreferencesHelper.getString(SharedPreferencesHelper.USER),
                 MessageType.MESSAGE);
 
         interactor.sendMessage(listener, message);

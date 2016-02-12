@@ -3,7 +3,6 @@ package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 import java.util.List;
 
 import xyz.thedevspot.voiperinho.R;
-import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.ContactsInteractor;
@@ -33,8 +32,8 @@ public class ContactsPresenterImpl implements ContactsPresenter {
 
     @Override
     public void onContactClick(User user) {
-        SharedPreferencesHelper.setContactId(VoiperinhoApplication.getInstance(), user.getId());
-        SharedPreferencesHelper.setContact(VoiperinhoApplication.getInstance(), user.getUsername());
+        SharedPreferencesHelper.setInt(user.getId(), SharedPreferencesHelper.CONTACT_ID);
+        SharedPreferencesHelper.setString(user.getUsername(), SharedPreferencesHelper.CONTACT);
     }
 
     private Listener<List<User>> listener = new Listener<List<User>>() {

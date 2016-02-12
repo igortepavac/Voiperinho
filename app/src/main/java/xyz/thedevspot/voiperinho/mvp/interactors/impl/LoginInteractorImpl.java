@@ -1,14 +1,14 @@
 package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 
 import java.net.Socket;
+
 import xyz.thedevspot.voiperinho.R;
-import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.helpers.SocketHelper;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
 import xyz.thedevspot.voiperinho.mvp.listeners.LoginCallback;
+import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
 import xyz.thedevspot.voiperinho.network.socket.ReceiverSocket;
 
 /**
@@ -29,8 +29,8 @@ public class LoginInteractorImpl implements LoginInteractor {
 
         @Override
         public void onLoginSuccess(User user) {
-            SharedPreferencesHelper.setUserId(VoiperinhoApplication.getInstance(), user.getId());
-            SharedPreferencesHelper.setUser(VoiperinhoApplication.getInstance(), user.getUsername());
+            SharedPreferencesHelper.setInt(user.getId(), SharedPreferencesHelper.USER_ID);
+            SharedPreferencesHelper.setString(user.getUsername(), SharedPreferencesHelper.USER);
             listener.onSuccess(null);
         }
 

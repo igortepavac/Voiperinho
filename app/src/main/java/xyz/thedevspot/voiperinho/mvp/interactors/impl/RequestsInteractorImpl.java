@@ -6,7 +6,6 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
-import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.RequestInformation;
@@ -24,7 +23,7 @@ public class RequestsInteractorImpl implements RequestsInteractor {
     @Override
     public void getRequests(Listener<List<RequestInformation>> listener) {
         this.listener = listener;
-        int id = SharedPreferencesHelper.getUserId(VoiperinhoApplication.getInstance());
+        int id = SharedPreferencesHelper.getInt(SharedPreferencesHelper.USER_ID);
 
         Call<BaseResponse<List<RequestInformation>>> call = ApiManager.getService().getRequests(id);
         call.enqueue(requestsCallback);
