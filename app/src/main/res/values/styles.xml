@@ -6,18 +6,6 @@
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
-    <!-- Toolbar -->
-    <style name="AppTheme.ToolbarStyle">
-        <item name="elevation">4dp</item>
-        <item name="titleTextColor">@android:color/white</item>
-        <item name="android:background">@color/color_primary</item>
-    </style>
-
-    <style name="AppTheme.ToolbarTheme">
-        <item name="colorControlNormal">@android:color/white</item>
     </style>
 
     <!-- Login and registration -->
