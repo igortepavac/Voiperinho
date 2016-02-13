@@ -4,6 +4,7 @@ import com.squareup.okhttp.OkHttpClient;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
+import xyz.thedevspot.voiperinho.network.ApiService;
 
 /**
  * Created by foi on 06/01/16.
@@ -18,9 +19,9 @@ public class ApiManager {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    private static final VoiperinhoService SERVICE = RETROFIT.create(VoiperinhoService.class);
+    private static final ApiService SERVICE = RETROFIT.create(ApiService.class);
 
-    public static VoiperinhoService getService() {
+    public static ApiService getService() {
         return SERVICE;
     }
 

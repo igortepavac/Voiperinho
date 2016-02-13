@@ -1,4 +1,4 @@
-package xyz.thedevspot.voiperinho.mvp.listeners;
+package xyz.thedevspot.voiperinho.listeners;
 
 import android.support.annotation.StringRes;
 

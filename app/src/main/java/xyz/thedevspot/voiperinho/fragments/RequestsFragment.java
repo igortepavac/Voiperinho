@@ -13,11 +13,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.adapters.ContactsAdapter;
-import xyz.thedevspot.voiperinho.helpers.MvpFactory;
+import xyz.thedevspot.voiperinho.dagger.components.DaggerRequestsComponent;
+import xyz.thedevspot.voiperinho.dagger.modules.RequestsModule;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.presenters.RequestsPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.RequestsView;
@@ -33,7 +36,8 @@ public class RequestsFragment extends BaseFragment implements RequestsView, Adap
     @Bind(R.id.no_requests)
     TextView twEmptyRequests;
 
-    private RequestsPresenter presenter;
+    @Inject
+    RequestsPresenter presenter;
 
     private ContactsAdapter adapter;
 
@@ -42,7 +46,10 @@ public class RequestsFragment extends BaseFragment implements RequestsView, Adap
         View view = inflater.inflate(R.layout.fragment_requests, container, false);
         ButterKnife.bind(this, view);
 
-        presenter = MvpFactory.getPresenter(this);
+        DaggerRequestsComponent.builder()
+                .requestsModule(new RequestsModule(this))
+                .build()
+                .inject(this);
 
         return view;
     }
@@ -50,7 +57,6 @@ public class RequestsFragment extends BaseFragment implements RequestsView, Adap
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         presenter.getRequests();
     }
 

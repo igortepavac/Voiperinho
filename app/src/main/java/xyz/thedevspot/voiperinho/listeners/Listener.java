@@ -1,4 +1,4 @@
-package xyz.thedevspot.voiperinho.mvp.listeners;
+package xyz.thedevspot.voiperinho.listeners;
 
 /**
  * Created by foi on 11/02/16.

@@ -15,8 +15,8 @@ import java.net.Socket;
 import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.Message;
 import xyz.thedevspot.voiperinho.models.User;
-import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
-import xyz.thedevspot.voiperinho.mvp.listeners.LoginCallback;
+import xyz.thedevspot.voiperinho.listeners.Listener;
+import xyz.thedevspot.voiperinho.network.LoginCallback;
 
 /**
  * Created by foi on 11/01/16.

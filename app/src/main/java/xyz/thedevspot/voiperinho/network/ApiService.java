@@ -1,4 +1,4 @@
-package xyz.thedevspot.voiperinho.network.api;
+package xyz.thedevspot.voiperinho.network;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import xyz.thedevspot.voiperinho.models.User;
 /**
  * Created by foi on 06/01/16.
  */
-public interface VoiperinhoService {
+public interface ApiService {
 
     @POST("/user/insert")
     Call<BaseResponse<String>> userRegister(@Body RegisterRequest registerRequest);

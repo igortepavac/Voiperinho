@@ -3,7 +3,7 @@ package xyz.thedevspot.voiperinho.fragments;
 import android.app.ProgressDialog;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.v4.content.ContextCompat;
 
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.mvp.views.BaseView;
@@ -33,10 +33,7 @@ public class BaseFragment extends android.support.v4.app.Fragment implements Bas
     @Override
     public void showMessage(@StringRes int error) {
         Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), getString(error), Snackbar.LENGTH_LONG);
-
-        View snackView = snackbar.getView();
-        snackView.setBackgroundColor(getResources().getColor(R.color.login_button_pressed));
-
+        snackbar.getView().setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.login_button_pressed));
         snackbar.show();
     }
 }

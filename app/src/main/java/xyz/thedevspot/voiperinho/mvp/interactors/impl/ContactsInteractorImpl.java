@@ -2,16 +2,18 @@ package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
+import xyz.thedevspot.voiperinho.listeners.Listener;
 import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.ContactsInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
-import xyz.thedevspot.voiperinho.network.api.ApiManager;
+import xyz.thedevspot.voiperinho.network.ApiService;
 
 /**
  * Created by foi on 09/01/16.
@@ -20,6 +22,12 @@ public class ContactsInteractorImpl implements ContactsInteractor {
 
     private Listener<List<User>> listener;
 
+    private ApiService apiService;
+
+    @Inject
+    public ContactsInteractorImpl(ApiService apiService) {
+        this.apiService = apiService;
+    }
 
     @Override
     public void getContacts(Listener<List<User>> listener) {
@@ -28,7 +36,7 @@ public class ContactsInteractorImpl implements ContactsInteractor {
 
 //        ReceiverSocket.getInstance().setContactsListener(cListener);
 
-        Call<BaseResponse<List<User>>> call = ApiManager.getService().getContacts(id);
+        Call<BaseResponse<List<User>>> call = apiService.getContacts(id);
         call.enqueue(callback);
     }
 

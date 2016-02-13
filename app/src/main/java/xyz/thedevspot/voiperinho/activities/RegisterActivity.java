@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xyz.thedevspot.voiperinho.R;
-import xyz.thedevspot.voiperinho.helpers.MvpFactory;
+import xyz.thedevspot.voiperinho.dagger.components.DaggerRegisterComponent;
+import xyz.thedevspot.voiperinho.dagger.modules.RegisterModule;
 import xyz.thedevspot.voiperinho.mvp.presenters.RegisterPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.RegisterView;
 
@@ -24,7 +27,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @Bind(R.id.register_email)
     EditText registrationEmail;
 
-    private RegisterPresenter presenter;
+    @Inject
+    RegisterPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,11 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         setContentView(R.layout.activity_register);
 
         ButterKnife.bind(this);
-        presenter = MvpFactory.getPresenter(this);
+
+        DaggerRegisterComponent.builder()
+                .registerModule(new RegisterModule(this))
+                .build()
+                .inject(this);
     }
 
     @OnClick(R.id.register_user_button)

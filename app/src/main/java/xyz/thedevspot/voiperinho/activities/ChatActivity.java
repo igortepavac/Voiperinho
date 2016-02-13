@@ -10,12 +10,15 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.adapters.ChatAdapter;
-import xyz.thedevspot.voiperinho.helpers.MvpFactory;
+import xyz.thedevspot.voiperinho.dagger.components.DaggerChatComponent;
+import xyz.thedevspot.voiperinho.dagger.modules.ChatModule;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.Message;
 import xyz.thedevspot.voiperinho.mvp.presenters.ChatPresenter;
@@ -37,11 +40,12 @@ public class ChatActivity extends BaseActivity implements ChatView {
     @Bind(R.id.chat_list)
     ListView chatListView;
 
+    @Inject
+    ChatPresenter presenter;
+
     private ChatAdapter adapter;
 
     private List<Message> messageList;
-
-    private ChatPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,10 @@ public class ChatActivity extends BaseActivity implements ChatView {
 
         initToolbar(toolbar, SharedPreferencesHelper.getString(SharedPreferencesHelper.CONTACT), true);
 
-        presenter = MvpFactory.getPresenter(this);
+        DaggerChatComponent.builder()
+                .chatModule(new ChatModule(this))
+                .build()
+                .inject(this);
 
         if (savedInstanceState != null) {
             String json = savedInstanceState.getString(MESSAGE_LIST);

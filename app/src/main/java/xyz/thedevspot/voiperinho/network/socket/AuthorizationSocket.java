@@ -1,4 +1,4 @@
-package xyz.thedevspot.voiperinho.helpers;
+package xyz.thedevspot.voiperinho.network.socket;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -9,12 +9,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import xyz.thedevspot.voiperinho.mvp.listeners.LoginCallback;
+import xyz.thedevspot.voiperinho.network.LoginCallback;
 
 /**
  * Created by foi on 09/01/16.
  */
-public class SocketHelper implements Runnable {
+public class AuthorizationSocket implements Runnable {
 
     private static final String ATTR_USERNAME = "{ \"username\": \"";
 
@@ -40,7 +40,7 @@ public class SocketHelper implements Runnable {
 
     private String password;
 
-    public SocketHelper(LoginCallback callback, String username, String password) {
+    public AuthorizationSocket(LoginCallback callback, String username, String password) {
         this.listener = callback;
         this.username = username;
         this.password = password;

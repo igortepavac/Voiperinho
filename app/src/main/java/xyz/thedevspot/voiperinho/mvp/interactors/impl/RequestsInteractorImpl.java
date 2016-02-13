@@ -2,16 +2,18 @@ package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
+import xyz.thedevspot.voiperinho.listeners.Listener;
 import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.RequestInformation;
 import xyz.thedevspot.voiperinho.mvp.interactors.RequestsInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
-import xyz.thedevspot.voiperinho.network.api.ApiManager;
+import xyz.thedevspot.voiperinho.network.ApiService;
 
 /**
  * Created by foi on 10/01/16.
@@ -20,12 +22,19 @@ public class RequestsInteractorImpl implements RequestsInteractor {
 
     private Listener<List<RequestInformation>> listener;
 
+    private ApiService apiService;
+
+    @Inject
+    public RequestsInteractorImpl(ApiService apiService) {
+        this.apiService = apiService;
+    }
+
     @Override
     public void getRequests(Listener<List<RequestInformation>> listener) {
         this.listener = listener;
         int id = SharedPreferencesHelper.getInt(SharedPreferencesHelper.USER_ID);
 
-        Call<BaseResponse<List<RequestInformation>>> call = ApiManager.getService().getRequests(id);
+        Call<BaseResponse<List<RequestInformation>>> call = apiService.getRequests(id);
         call.enqueue(requestsCallback);
     }
 

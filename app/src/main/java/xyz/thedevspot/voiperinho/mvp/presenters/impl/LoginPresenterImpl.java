@@ -3,9 +3,11 @@ package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 
+import javax.inject.Inject;
+
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
+import xyz.thedevspot.voiperinho.listeners.LoginListener;
 import xyz.thedevspot.voiperinho.mvp.presenters.LoginPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.LoginView;
 
@@ -18,6 +20,7 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     private LoginInteractor interactor;
 
+    @Inject
     public LoginPresenterImpl(LoginView view, LoginInteractor interactor) {
         this.view = view;
         this.interactor = interactor;

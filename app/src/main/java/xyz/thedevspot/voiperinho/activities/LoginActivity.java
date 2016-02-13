@@ -6,12 +6,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import xyz.thedevspot.voiperinho.R;
-import xyz.thedevspot.voiperinho.helpers.MvpFactory;
+import xyz.thedevspot.voiperinho.dagger.components.DaggerLoginComponent;
+import xyz.thedevspot.voiperinho.dagger.modules.LoginModule;
 import xyz.thedevspot.voiperinho.mvp.presenters.LoginPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.LoginView;
 
@@ -32,7 +35,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Bind(R.id.login_button)
     Button loginButton;
 
-    private LoginPresenter presenter;
+    @Inject
+    LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
-        presenter = MvpFactory.getPresenter(this);
+
+        DaggerLoginComponent.builder()
+                .loginModule(new LoginModule(this))
+                .build()
+                .inject(this);
     }
 
     @OnEditorAction(R.id.password)

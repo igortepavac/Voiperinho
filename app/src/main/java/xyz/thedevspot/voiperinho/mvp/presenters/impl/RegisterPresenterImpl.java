@@ -2,10 +2,12 @@ package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 
 import android.text.TextUtils;
 
+import javax.inject.Inject;
+
 import xyz.thedevspot.voiperinho.R;
+import xyz.thedevspot.voiperinho.listeners.Listener;
 import xyz.thedevspot.voiperinho.models.RegisterRequest;
 import xyz.thedevspot.voiperinho.mvp.interactors.RegisterInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.presenters.RegisterPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.RegisterView;
 
@@ -22,6 +24,7 @@ public class RegisterPresenterImpl implements RegisterPresenter {
 
     private RegisterInteractor interactor;
 
+    @Inject
     public RegisterPresenterImpl(RegisterView view, RegisterInteractor interactor) {
         this.view = view;
         this.interactor = interactor;

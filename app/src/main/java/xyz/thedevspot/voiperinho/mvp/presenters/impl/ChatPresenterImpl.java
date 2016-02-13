@@ -6,11 +6,13 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import xyz.thedevspot.voiperinho.helpers.MessageType;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.Message;
 import xyz.thedevspot.voiperinho.mvp.interactors.ChatInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
+import xyz.thedevspot.voiperinho.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.presenters.ChatPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.ChatView;
 
@@ -23,6 +25,7 @@ public class ChatPresenterImpl implements ChatPresenter {
 
     private ChatInteractor interactor;
 
+    @Inject
     public ChatPresenterImpl(ChatView view, ChatInteractor interactor) {
         this.view = view;
         this.interactor = interactor;

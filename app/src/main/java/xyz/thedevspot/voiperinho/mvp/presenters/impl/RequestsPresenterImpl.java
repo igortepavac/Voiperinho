@@ -3,11 +3,13 @@ package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.models.RequestInformation;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.RequestsInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
+import xyz.thedevspot.voiperinho.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.presenters.RequestsPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.RequestsView;
 
@@ -20,6 +22,7 @@ public class RequestsPresenterImpl implements RequestsPresenter {
 
     private RequestsInteractor interactor;
 
+    @Inject
     public RequestsPresenterImpl(RequestsView view, RequestsInteractor interactor) {
         this.view = view;
         this.interactor = interactor;

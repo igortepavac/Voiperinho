@@ -1,4 +1,4 @@
-package xyz.thedevspot.voiperinho.mvp.listeners;
+package xyz.thedevspot.voiperinho.network;
 
 import java.net.Socket;
 

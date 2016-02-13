@@ -1,6 +1,6 @@
 package xyz.thedevspot.voiperinho.mvp.interactors;
 
-import xyz.thedevspot.voiperinho.mvp.listeners.LoginListener;
+import xyz.thedevspot.voiperinho.listeners.LoginListener;
 
 /**
  * Created by foi on 06/01/16.

@@ -2,11 +2,13 @@ package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.ContactsInteractor;
-import xyz.thedevspot.voiperinho.mvp.listeners.Listener;
+import xyz.thedevspot.voiperinho.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.presenters.ContactsPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.ContactsView;
 
@@ -19,6 +21,7 @@ public class ContactsPresenterImpl implements ContactsPresenter {
 
     private ContactsInteractor interactor;
 
+    @Inject
     public ContactsPresenterImpl(ContactsView view, ContactsInteractor interactor) {
         this.view = view;
         this.interactor = interactor;
