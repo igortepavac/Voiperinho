@@ -15,8 +15,8 @@ import java.net.Socket;
 import xyz.thedevspot.voiperinho.models.BaseResponse;
 import xyz.thedevspot.voiperinho.models.Message;
 import xyz.thedevspot.voiperinho.models.User;
-import xyz.thedevspot.voiperinho.listeners.Listener;
-import xyz.thedevspot.voiperinho.network.LoginCallback;
+import xyz.thedevspot.voiperinho.network.callbacks.ChatCallback;
+import xyz.thedevspot.voiperinho.network.callbacks.LoginCallback;
 
 /**
  * Created by foi on 11/01/16.
@@ -29,17 +29,17 @@ public class ReceiverSocket implements Runnable {
 
     private Handler handler;
 
-    private LoginCallback callback;
+    private LoginCallback loginCallback;
 
-    private Listener<Message> chatListener;
+    private ChatCallback chatCallback;
 
     private boolean isAuthorized;
 
     private static ReceiverSocket instance;
 
-    private ReceiverSocket(Socket client, LoginCallback callback) {
+    private ReceiverSocket(Socket client, LoginCallback loginCallback) {
         this.client = client;
-        this.callback = callback;
+        this.loginCallback = loginCallback;
         this.handler = new Handler(Looper.getMainLooper());
         this.isAuthorized = false;
 
@@ -73,10 +73,13 @@ public class ReceiverSocket implements Runnable {
         return this.client;
     }
 
-    public void setChatListener(Listener<Message> listener) {
-        this.chatListener = listener;
+    public void setChatCallback(ChatCallback chatCallback) {
+        this.chatCallback = chatCallback;
     }
 
+    /**
+     * Receives authorization response from the server and notifies the caller accordingly.
+     */
     private void authorize() {
         String response = "";
 
@@ -88,7 +91,6 @@ public class ReceiverSocket implements Runnable {
         }
 
         if (!TextUtils.isEmpty(response)) {
-
             //Convert response to JSON
             Gson gson = new Gson();
             final BaseResponse<User> loginResponse = gson.fromJson(response, new TypeToken<BaseResponse<User>>(){}.getType());
@@ -99,22 +101,27 @@ public class ReceiverSocket implements Runnable {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        callback.onLoginSuccess(loginResponse.getMessage());
+                        loginCallback.onLoginSuccess(loginResponse.getMessage());
                     }
                 });
             } else {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        callback.onLoginFail();
+                        loginCallback.onLoginFail();
                     }
                 });
             }
         }
     }
 
+    /**
+     * Receives all messages from the server.
+     * Communicates with the main thread via callbacks.
+     */
     private void listenForMessages() {
         String response = "";
+
         while (!client.isClosed() && isAuthorized) {
             try {
                 response = reader.readLine();
@@ -126,11 +133,11 @@ public class ReceiverSocket implements Runnable {
                 Gson gson = new Gson();
                 final Message message = gson.fromJson(response, Message.class);
 
-                if (chatListener != null) {
+                if (chatCallback != null) {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            chatListener.onSuccess(message);
+                            chatCallback.onMessageReceived(message);
                         }
                     });
                 }

@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import xyz.thedevspot.voiperinho.network.LoginCallback;
+import xyz.thedevspot.voiperinho.network.callbacks.LoginCallback;
 
 /**
  * Created by foi on 09/01/16.

@@ -1,4 +1,4 @@
-package xyz.thedevspot.voiperinho.network;
+package xyz.thedevspot.voiperinho.network.callbacks;
 
 import java.net.Socket;
 

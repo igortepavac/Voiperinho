@@ -32,7 +32,7 @@ public class ChatModule {
     }
 
     @Provides
-    public ChatInteractor provideChatInteractor(ChatInteractorImpl chatInteractor) {
-        return chatInteractor;
+    public ChatInteractor provideChatInteractor() {
+        return new ChatInteractorImpl();
     }
 }

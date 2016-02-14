@@ -9,7 +9,7 @@ import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
 import xyz.thedevspot.voiperinho.network.socket.AuthorizationSocket;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
-import xyz.thedevspot.voiperinho.network.LoginCallback;
+import xyz.thedevspot.voiperinho.network.callbacks.LoginCallback;
 import xyz.thedevspot.voiperinho.listeners.LoginListener;
 import xyz.thedevspot.voiperinho.network.socket.ReceiverSocket;
 

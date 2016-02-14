@@ -1,10 +1,9 @@
 package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 
-import javax.inject.Inject;
-
 import xyz.thedevspot.voiperinho.listeners.Listener;
 import xyz.thedevspot.voiperinho.models.Message;
 import xyz.thedevspot.voiperinho.mvp.interactors.ChatInteractor;
+import xyz.thedevspot.voiperinho.network.callbacks.ChatCallback;
 import xyz.thedevspot.voiperinho.network.socket.ReceiverSocket;
 import xyz.thedevspot.voiperinho.network.socket.SenderSocket;
 
@@ -13,12 +12,19 @@ import xyz.thedevspot.voiperinho.network.socket.SenderSocket;
  */
 public class ChatInteractorImpl implements ChatInteractor {
 
-    @Inject
-    public ChatInteractorImpl() {}
+    private Listener<Message> listener;
 
     @Override
     public void sendMessage(Listener<Message> listener, Message message) {
-        ReceiverSocket.getInstance().setChatListener(listener);
+        this.listener = listener;
+        ReceiverSocket.getInstance().setChatCallback(callback);
         new Thread(new SenderSocket(ReceiverSocket.getInstance().getClient(), message)).start();
     }
+
+    private ChatCallback callback = new xyz.thedevspot.voiperinho.network.callbacks.ChatCallback() {
+        @Override
+        public void onMessageReceived(Message message) {
+            listener.onSuccess(message);
+        }
+    };
 }
