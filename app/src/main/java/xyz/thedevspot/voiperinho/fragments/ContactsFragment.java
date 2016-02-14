@@ -77,4 +77,8 @@ public class ContactsFragment extends BaseFragment implements ContactsView, Adap
         presenter.onContactClick(adapter.getItem(position));
         startActivity(new Intent(getActivity(), ChatActivity.class));
     }
+
+    public ContactsAdapter getAdapter() {
+        return adapter;
+    }
 }

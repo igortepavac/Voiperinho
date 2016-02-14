@@ -10,7 +10,7 @@ import dagger.Provides;
  */
 
 @Module
-public class BaseUrlModule {
+public class HostModule {
 
     private static final String URL = "http://thedevspot.xyz:90";
 

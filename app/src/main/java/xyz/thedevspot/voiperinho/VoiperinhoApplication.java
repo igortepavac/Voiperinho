@@ -12,7 +12,7 @@ import xyz.thedevspot.voiperinho.network.ApiService;
  */
 public class VoiperinhoApplication extends Application {
 
-    private static VoiperinhoApplication instance;
+    protected static VoiperinhoApplication instance;
 
     @Inject
     ApiService apiService;

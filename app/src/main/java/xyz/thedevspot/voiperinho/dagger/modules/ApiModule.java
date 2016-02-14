@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import retrofit.GsonConverterFactory;
+import retrofit.Converter;
 import retrofit.Retrofit;
 import xyz.thedevspot.voiperinho.network.ApiService;
 
@@ -19,11 +19,11 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    public ApiService provideApiService(String baseUrl) {
+    public ApiService provideApiService(String baseUrl, Converter.Factory converterFactory, OkHttpClient okHttpClient) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .client(new OkHttpClient())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(converterFactory)
+                .client(okHttpClient)
                 .build();
 
         return retrofit.create(ApiService.class);
