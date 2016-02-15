@@ -12,4 +12,6 @@ Screenshots are available in the screens directory.
 - Implement VoIP feature
 - Add avatar browsing feature for registration
 - Modify chat UI/UX
+- Implement search feature
+- Implement online/offline status change
 - ...
