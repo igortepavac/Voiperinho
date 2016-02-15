@@ -68,7 +68,7 @@ public class ContactsFragment extends BaseFragment implements ContactsView, Adap
     }
 
     @Override
-    public void onContatcsEmpty() {
+    public void onContactsEmpty() {
         contactListView.setEmptyView(twEmptyContacts);
     }
 
@@ -76,9 +76,5 @@ public class ContactsFragment extends BaseFragment implements ContactsView, Adap
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         presenter.onContactClick(adapter.getItem(position));
         startActivity(new Intent(getActivity(), ChatActivity.class));
-    }
-
-    public ContactsAdapter getAdapter() {
-        return adapter;
     }
 }

@@ -12,6 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
         testApplicationId "xyz.thedevspot.voiperinho.instrument.test"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -52,4 +53,7 @@ dependencies {
     testCompile 'org.mockito:mockito-core:1.10.19'
     testCompile 'com.google.dexmaker:dexmaker:1.2'
     testCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
 }

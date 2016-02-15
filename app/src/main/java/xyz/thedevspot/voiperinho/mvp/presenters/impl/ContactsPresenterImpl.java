@@ -47,7 +47,7 @@ public class ContactsPresenterImpl implements ContactsPresenter {
             if (contactList != null && contactList.size() > 0) {
                 view.onContactsReceived(contactList);
             } else {
-                view.onContatcsEmpty();
+                view.onContactsEmpty();
             }
         }
 

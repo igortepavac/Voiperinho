@@ -1,14 +1,18 @@
-[
-  {
-    "id": 23,
-    "username": "Mirko",
-    "email_address": "mirec@gmail.com",
-    "avatar": null
-  },
-  {
-    "id": 24,
-    "username": "Stefan",
-    "email_address": "stef@gmail.com",
-    "avatar": null
-  }
-]
+{
+  "status": 200,
+  "message": [
+    {
+      "id": 23,
+      "username": "Mirko",
+      "email_address": "mirec@gmail.com",
+      "avatar": null
+    },
+    {
+      "id": 24,
+      "username": "Stefan",
+      "email_address": "stef@gmail.com",
+      "avatar": null
+    }
+  ],
+  "error_message": null
+}

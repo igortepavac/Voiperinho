@@ -11,5 +11,5 @@ public interface ContactsView extends BaseView {
 
     void onContactsReceived(List<User> contactList);
 
-    void onContatcsEmpty();
+    void onContactsEmpty();
 }

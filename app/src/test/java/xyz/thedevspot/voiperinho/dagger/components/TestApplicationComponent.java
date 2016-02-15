@@ -5,9 +5,9 @@ import javax.inject.Singleton;
 import dagger.Component;
 import xyz.thedevspot.voiperinho.VoiperinhoApplication;
 import xyz.thedevspot.voiperinho.dagger.modules.ConverterFactoryModule;
-import xyz.thedevspot.voiperinho.dagger.modules.HttpClientModule;
 import xyz.thedevspot.voiperinho.dagger.modules.MockApiModule;
 import xyz.thedevspot.voiperinho.dagger.modules.MockHostModule;
+import xyz.thedevspot.voiperinho.dagger.modules.MockHttpClientModule;
 import xyz.thedevspot.voiperinho.dagger.modules.SingleThreadExecutorModule;
 
 /**
@@ -18,7 +18,7 @@ import xyz.thedevspot.voiperinho.dagger.modules.SingleThreadExecutorModule;
         MockHostModule.class,
         SingleThreadExecutorModule.class,
         ConverterFactoryModule.class,
-        HttpClientModule.class,
+        MockHttpClientModule.class,
         MockApiModule.class
 })
 @Singleton
