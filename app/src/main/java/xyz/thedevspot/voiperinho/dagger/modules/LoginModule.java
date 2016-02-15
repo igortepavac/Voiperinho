@@ -32,7 +32,7 @@ public class LoginModule {
     }
 
     @Provides
-    public LoginInteractor provideLoginInteractor(LoginInteractorImpl loginInteractor) {
-        return loginInteractor;
+    public LoginInteractor provideLoginInteractor() {
+        return new LoginInteractorImpl();
     }
 }

@@ -2,15 +2,13 @@ package xyz.thedevspot.voiperinho.mvp.interactors.impl;
 
 import java.net.Socket;
 
-import javax.inject.Inject;
-
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
-import xyz.thedevspot.voiperinho.network.socket.AuthorizationSocket;
+import xyz.thedevspot.voiperinho.listeners.LoginListener;
 import xyz.thedevspot.voiperinho.models.User;
 import xyz.thedevspot.voiperinho.mvp.interactors.LoginInteractor;
 import xyz.thedevspot.voiperinho.network.callbacks.LoginCallback;
-import xyz.thedevspot.voiperinho.listeners.LoginListener;
+import xyz.thedevspot.voiperinho.network.socket.AuthorizationSocket;
 import xyz.thedevspot.voiperinho.network.socket.ReceiverSocket;
 
 /**
@@ -19,9 +17,6 @@ import xyz.thedevspot.voiperinho.network.socket.ReceiverSocket;
 public class LoginInteractorImpl implements LoginInteractor {
 
     private LoginListener listener;
-
-    @Inject
-    public LoginInteractorImpl() {}
 
     @Override
     public void attemptLogin(LoginListener listener, String username, String password) {
