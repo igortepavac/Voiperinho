@@ -1,12 +1,15 @@
 # Voiperinho
 Project for Computer Networks 2 course
 
+### About
+This is an IM application that sends messages through the relay server. Messages are sent and received through sockets implemented in Java.
+
+Application architecture is MVP (Model - View - Presenter) where Dependency injection is implemented with Dagger 2. Retrofit is used for API calls.
+Also, some Unit tests and Instrumental tests are implemented.
+
+Screenshots are available in the screens directory.
 ### TODO list:
 - Implement VoIP feature
-- Implement Dependency Injection with Dagger2
 - Add avatar browsing feature for registration
-- Add circle avatars
-- Refactor listeners
-- Refactor models
 - Modify chat UI/UX
 - ...
