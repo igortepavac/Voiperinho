@@ -13,6 +13,7 @@ import butterknife.OnClick;
 import xyz.thedevspot.voiperinho.R;
 import xyz.thedevspot.voiperinho.adapters.ContactsAdapter;
 
+// TODO: Implement this functionality. Backend does not support this yet.
 public class SearchActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)

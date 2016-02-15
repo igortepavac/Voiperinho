@@ -11,30 +11,16 @@
 
     <ListView
         android:id="@+id/chat_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:transcriptMode="alwaysScroll"
-        android:stackFromBottom="true"
-        android:divider="@null"
-        android:dividerHeight="0dp"/>
+        style="@style/ChatListView"/>
 
     <View style="@style/Separator" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/spacing_small"
-        android:paddingTop="@dimen/spacing_small"
-        android:paddingRight="@dimen/spacing_small"
-        android:orientation="horizontal">
+    <LinearLayout style="@style/ChatInputLayout">
 
         <EditText
             android:id="@+id/chat_message"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/chat_hint"/>
+            android:hint="@string/chat_hint"
+            style="@style/MessageInput" />
 
         <Button
             android:id="@+id/chat_send"
@@ -42,7 +28,5 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/spacing_small"
             android:text="@string/chat_send"/>
-
     </LinearLayout>
-
 </LinearLayout>

@@ -13,7 +13,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/spacing_large</item>
-        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center_horizontal</item>
     </style>
 
     <style name="FormLayout">
@@ -96,5 +96,34 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/color_primary_dark</item>
+    </style>
+
+    <!-- Chat -->
+    <style name="ChatListView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:transcriptMode">alwaysScroll</item>
+        <item name="android:stackFromBottom">true</item>
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+    </style>
+
+    <style name="ChatInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">@dimen/spacing_small</item>
+        <item name="android:paddingLeft">@dimen/spacing_small</item>
+        <item name="android:paddingRight">@dimen/spacing_small</item>
+    </style>
+
+    <style name="SearchInputLayout" parent="ChatInputLayout">
+        <item name="android:paddingBottom">@dimen/spacing_small</item>
+    </style>
+
+    <style name="MessageInput" parent="Input.Username">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
     </style>
 </resources>

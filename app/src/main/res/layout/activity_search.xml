@@ -9,18 +9,12 @@
 
     <include layout="@layout/toolbar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_small"
-        android:orientation="horizontal">
+    <LinearLayout style="@style/SearchInputLayout">
 
         <EditText
             android:id="@+id/search_username"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/search_hint" />
+            android:hint="@string/search_hint"
+            style="@style/MessageInput" />
 
         <Button
             android:id="@+id/search_go"

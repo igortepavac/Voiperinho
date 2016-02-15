@@ -53,12 +53,12 @@ public class ChatActivity extends BaseActivity implements ChatView {
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
 
-        initToolbar(toolbar, SharedPreferencesHelper.getString(SharedPreferencesHelper.CONTACT), true);
-
         DaggerChatComponent.builder()
                 .chatModule(new ChatModule(this))
                 .build()
                 .inject(this);
+
+        initToolbar(toolbar, SharedPreferencesHelper.getString(SharedPreferencesHelper.CONTACT), true);
 
         if (savedInstanceState != null) {
             String json = savedInstanceState.getString(MESSAGE_LIST);

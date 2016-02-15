@@ -82,7 +82,7 @@ public class Message {
         this.command = command.toString();
     }
 
-    public void setTimeStamp() {
+    public void setTimestamp() {
         TimeZone.setDefault(TimeZone.getTimeZone("GMT+1"));
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 

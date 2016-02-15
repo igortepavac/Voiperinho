@@ -1,25 +1,22 @@
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
     tools:context=".activities.RegisterActivity">
 
-    <ImageView
-        android:src="@drawable/ic_logo"
-        style="@style/Logo"/>
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
-            style="@style/FormLayout">
+        <ImageView
+            android:src="@drawable/ic_logo"
+            style="@style/Logo" />
 
-            <android.support.design.widget.TextInputLayout
-                style="@style/TextInputLayout">
+        <LinearLayout style="@style/FormLayout">
+
+            <android.support.design.widget.TextInputLayout style="@style/TextInputLayout">
 
                 <EditText
                     android:id="@+id/register_username"
@@ -27,8 +24,7 @@
                     style="@style/Input.Username" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                style="@style/TextInputLayout">
+            <android.support.design.widget.TextInputLayout style="@style/TextInputLayout">
 
                 <EditText
                     android:id="@+id/register_password"
@@ -36,8 +32,7 @@
                     style="@style/Input.Password" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                style="@style/TextInputLayout">
+            <android.support.design.widget.TextInputLayout style="@style/TextInputLayout">
 
                 <EditText
                     android:id="@+id/register_email"
@@ -48,7 +43,7 @@
             <Button
                 android:id="@+id/register_user_button"
                 android:text="@string/action_register"
-                style="@style/Button.Action"/>
+                style="@style/Button.Action" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

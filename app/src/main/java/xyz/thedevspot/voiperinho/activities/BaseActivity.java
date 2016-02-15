@@ -40,7 +40,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         snackbar.show();
     }
 
-    protected void initToolbar(@Nullable Toolbar toolbar, @Nullable String title, boolean homeEnabled) {
+    protected void initToolbar(Toolbar toolbar, @Nullable String title, boolean homeEnabled) {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }

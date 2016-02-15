@@ -1,5 +1,7 @@
 package xyz.thedevspot.voiperinho.mvp.presenters.impl;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -10,9 +12,9 @@ import javax.inject.Inject;
 
 import xyz.thedevspot.voiperinho.helpers.MessageType;
 import xyz.thedevspot.voiperinho.helpers.SharedPreferencesHelper;
+import xyz.thedevspot.voiperinho.listeners.Listener;
 import xyz.thedevspot.voiperinho.models.Message;
 import xyz.thedevspot.voiperinho.mvp.interactors.ChatInteractor;
-import xyz.thedevspot.voiperinho.listeners.Listener;
 import xyz.thedevspot.voiperinho.mvp.presenters.ChatPresenter;
 import xyz.thedevspot.voiperinho.mvp.views.ChatView;
 
@@ -33,12 +35,14 @@ public class ChatPresenterImpl implements ChatPresenter {
 
     @Override
     public void sendMessage(String content) {
-        Message message = new Message(content,
-                SharedPreferencesHelper.getString(SharedPreferencesHelper.CONTACT),
-                SharedPreferencesHelper.getString(SharedPreferencesHelper.USER),
-                MessageType.MESSAGE);
+        if (!TextUtils.isEmpty(content)) {
+            Message message = new Message(content,
+                    SharedPreferencesHelper.getString(SharedPreferencesHelper.CONTACT),
+                    SharedPreferencesHelper.getString(SharedPreferencesHelper.USER),
+                    MessageType.MESSAGE);
 
-        interactor.sendMessage(listener, message);
+            interactor.sendMessage(listener, message);
+        }
     }
 
     @Override

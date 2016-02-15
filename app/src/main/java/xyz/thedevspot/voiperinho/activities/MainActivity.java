@@ -54,13 +54,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_search) {
+        if (item.getItemId() == R.id.action_search) {
             startActivity(new Intent(this, SearchActivity.class));
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
